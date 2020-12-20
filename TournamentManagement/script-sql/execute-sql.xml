@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <project name="sql-projet-postgresql" >
+
+	
+    <!-- ================================= 
+          Paramètres généraux              
+         ================================= -->
+	
+	<property file="jdbc.properties" />
+	
+	<path id="path.jdbc.drivers">
+		<fileset dir="C:/dev19/java/libraries/JDBC-Drivers"></fileset>
+	</path>
+	
+
+    <!-- ================================= 
+          target: 0-user              
+         ================================= -->
+    <target name="user" description="Crée l'utilisateur">
+    	<execute-sql sqlfile="user.sql" 
+    		user="${admin.user}" password="${admin.password}"
+    		delimiter="/"
+    />
+    </target>
+	
+
+    <!-- ================================= 
+          target: 1-tables              
+         ================================= -->
+    <target name="tables" description="Crée talbes, séquences et vues">
+    	<execute-sql sqlfile="tables.sql"/>
+    </target>
+	
+
+    <!-- ================================= 
+          target: 2-data              
+         ================================= -->
+    <target name="data" description="Insère données initiales">
+    	<execute-sql sqlfile="data.sql"/>
+    </target>
+	
+    <!-- ================================= 
+          target: 9-tout              
+         ================================= -->
+    <target name="tout" description="description">
+    	
+    	<antcall target="tables" />
+		<antcall target="data" />
+        
+    </target>
+	
+	
+	<!-- = = = = = = = = = = = = = = = = =
+          macrodef: execute-sql          
+         = = = = = = = = = = = = = = = = = -->
+    <macrodef name="execute-sql">
+        <attribute  name="sqlfile"  />
+        <attribute  name="delimiter" default=";"  />
+        <attribute  name="user" default="${appli.user}"  />
+        <attribute  name="password" default="${appli.password}"  />
+        <sequential>
+        	
+        	<local name="delimitertype" />
+        	<local name="strictDelimiterMatching" />
+        	<condition property="delimitertype" value="normal" else="row" >
+				<equals arg1="@{delimiter}" arg2=";"/>
+        	</condition>
+        	<condition property="strictDelimiterMatching" value="true" else="false" >
+				<equals arg1="@{delimiter}" arg2=";"/>
+        	</condition>
+        	
+        	<sql 
+        		src="@{sqlfile}"
+        		userid="@{user}" 
+        		url="${jdbc.url}" 
+        		password="@{password}" 
+        		driver="${jdbc.driver}" 
+        		delimiter="@{delimiter}"
+        		delimitertype="${delimitertype}"
+        		strictDelimiterMatching="${strictDelimiterMatching}"
+        		autocommit="true"
+        		encoding="UTF-8"
+        		onerror="continue"
+    			classpathref="path.jdbc.drivers"
+        	/>
+            
+        </sequential>
+    </macrodef>
+
+
+</project>

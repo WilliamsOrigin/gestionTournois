@@ -1,0 +1,66 @@
+html,
+body,
+header,
+.view {
+  height: 100vh;
+}
+
+@media (max-width: 740px) {
+  html,
+  body,
+  header,
+  .view {
+    height: 815px;
+  }
+}
+
+@media (min-width: 800px) and (max-width: 850px) {
+  html,
+  body,
+  header,
+  .view {
+    height: 650px;
+  }
+}
+
+.card {
+  background-color: rgba(229, 228, 255, 0.2);
+}
+.md-form label {
+  color: #ffffff;
+}
+
+.card .form-header {
+  color: #fff;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+input[type="text"],
+input[type="password"] {
+  border-bottom: 1px solid white;
+  color: white;
+  background: none;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+  background: none;
+  color: white;
+}
+
+.form-control::placeholder {
+  color: white;
+}
+
+.form-control {
+  color: #fff;
+}
+
+a {
+  color: #45cafc;
+}
+
+a:hover {
+  color: #303f9f;
+}
