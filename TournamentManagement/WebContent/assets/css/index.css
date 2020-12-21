@@ -1,0 +1,29 @@
+:root {
+  --peak1: hsl(26, 98%, 74%, 0.2);
+  --peak2: hsl(12, 100%, 69%, 0.25);
+}
+
+body {
+  overflow: hidden;
+}
+
+.bgImage {
+  background: linear-gradient(127deg, var(--peak1), var(--peak2)),
+    url("../imgs/fp1.jpg") no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 610px;
+}
+
+.card {
+  background: linear-gradient(
+    rgba(255, 255, 255, 0.7),
+    rgba(255, 255, 255, 0.7)
+  );
+}
+
+input[type="text"],
+input[type="password"] {
+  background: none;
+  border: 2px solid black;
+}

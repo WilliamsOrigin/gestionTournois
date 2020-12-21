@@ -10,8 +10,8 @@ DELETE FROM journaliste;
 
 
 INSERT INTO utilisateur (idutilisateur, pseudo, motdepasse, role) VALUES
-( 1, 'Administateur', 'admin', 0),
-( 2, 'User', 'user', 1);
+( 1, 'bertrand', 'admin', 0),
+( 2, 'julio', 'user', 1);
 
 ALTER TABLE utilisateur ALTER COLUMN idutilisateur RESTART WITH 3;
 

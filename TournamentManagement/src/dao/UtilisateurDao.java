@@ -18,7 +18,7 @@ public class UtilisateurDao {
 	
 	@SuppressWarnings("unchecked")
 	public List<Utilisateur> findAllUsers() {
-		Query query = em.createQuery("SELECT * FROM utilisateur");
+		Query query = em.createQuery("select u from Utilisateur u");
 		return query.getResultList();
 	}
 	

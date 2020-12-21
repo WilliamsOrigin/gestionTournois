@@ -25,7 +25,7 @@ public class login extends HttpServlet {
 	private UtilisateurDao userDao = new UtilisateurDao(em);
 	Utilisateur user;
 	
-	String error="";
+	String error;
 	
 	public void doPost(HttpServletRequest request, HttpServletResponse response) 
 	throws ServletException, IOException {
@@ -50,7 +50,7 @@ public class login extends HttpServlet {
 		else {
 			error = "Veuillez vérifier que votre pseudo et mot de passe concordent !!";
 			request.setAttribute("error", error);
-			this.getServletContext().getRequestDispatcher("/login.jsp")
+			this.getServletContext().getRequestDispatcher("/loginPage.jsp")
 			.forward(request, response);
 		}
 	}
