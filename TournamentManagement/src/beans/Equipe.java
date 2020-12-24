@@ -1,5 +1,6 @@
 package beans;
 
+import java.io.Serializable;
 import javax.persistence.*;
 
 
@@ -8,16 +9,19 @@ import javax.persistence.*;
  * 
  */
 @Entity
+@NamedQuery(name="Equipe.findAll", query="SELECT e FROM Equipe e")
 public class Equipe  {
+	private static final long serialVersionUID = 1L;
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_equipe")
 	private Integer idEquipe;
 
-	//bi-directional many-to-one association to Joueur
-	@ManyToOne
-	@JoinColumn(name="id_joueur")
-	private Joueur joueur;
+	@Column(name="id_equipier")
+	private Integer idEquipier;
+
+	@Column(name="id_joueur")
+	private Integer idJoueur;
 
 	public Equipe() {
 	}
@@ -30,12 +34,20 @@ public class Equipe  {
 		this.idEquipe = idEquipe;
 	}
 
-	public Joueur getJoueur() {
-		return this.joueur;
+	public Integer getIdEquipier() {
+		return this.idEquipier;
 	}
 
-	public void setJoueur(Joueur joueur) {
-		this.joueur = joueur;
+	public void setIdEquipier(Integer idEquipier) {
+		this.idEquipier = idEquipier;
+	}
+
+	public Integer getIdJoueur() {
+		return this.idJoueur;
+	}
+
+	public void setIdJoueur(Integer idJoueur) {
+		this.idJoueur = idJoueur;
 	}
 
 }

@@ -1,5 +1,6 @@
 package beans;
 
+import java.io.Serializable;
 import javax.persistence.*;
 import java.sql.Time;
 import java.util.Date;
@@ -12,35 +13,34 @@ import java.util.List;
  */
 @Entity
 @Table(name="t_match")
+@NamedQuery(name="TMatch.findAll", query="SELECT t FROM TMatch t")
 public class TMatch  {
+	private static final long serialVersionUID = 1L;
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_match")
 	private Integer idMatch;
 
-	private String categorie;
+	private Integer categorie;
 
-	private String courtdeterrain;
+	private Integer court;
 
-	private Time duree;
+	private Time heuredb;
+
+	private Time heurefin;
 
 	@Temporal(TemporalType.DATE)
-	private Date heure;
+	private Date jour;
 
-	private Integer nombredeset;
+	private String score;
 
-	private Integer score;
+	private Integer sets;
 
-	private String statut;
+	private Integer statut;
 
-	//bi-directional many-to-one association to Soustournoi
+	//bi-directional many-to-one association to Appartenir
 	@OneToMany(mappedBy="TMatch")
-	private List<Soustournoi> soustournois;
-
-	//bi-directional many-to-one association to Joueur
-	@ManyToOne
-	@JoinColumn(name="id_joueur")
-	private Joueur joueur;
+	private List<Appartenir> appartenirs;
 
 	public TMatch() {
 	}
@@ -53,90 +53,90 @@ public class TMatch  {
 		this.idMatch = idMatch;
 	}
 
-	public String getCategorie() {
+	public Integer getCategorie() {
 		return this.categorie;
 	}
 
-	public void setCategorie(String categorie) {
+	public void setCategorie(Integer categorie) {
 		this.categorie = categorie;
 	}
 
-	public String getCourtdeterrain() {
-		return this.courtdeterrain;
+	public Integer getCourt() {
+		return this.court;
 	}
 
-	public void setCourtdeterrain(String courtdeterrain) {
-		this.courtdeterrain = courtdeterrain;
+	public void setCourt(Integer court) {
+		this.court = court;
 	}
 
-	public Time getDuree() {
-		return this.duree;
+	public Time getHeuredb() {
+		return this.heuredb;
 	}
 
-	public void setDuree(Time duree) {
-		this.duree = duree;
+	public void setHeuredb(Time heuredb) {
+		this.heuredb = heuredb;
 	}
 
-	public Date getHeure() {
-		return this.heure;
+	public Time getHeurefin() {
+		return this.heurefin;
 	}
 
-	public void setHeure(Date heure) {
-		this.heure = heure;
+	public void setHeurefin(Time heurefin) {
+		this.heurefin = heurefin;
 	}
 
-	public Integer getNombredeset() {
-		return this.nombredeset;
+	public Date getJour() {
+		return this.jour;
 	}
 
-	public void setNombredeset(Integer nombredeset) {
-		this.nombredeset = nombredeset;
+	public void setJour(Date jour) {
+		this.jour = jour;
 	}
 
-	public Integer getScore() {
+	public String getScore() {
 		return this.score;
 	}
 
-	public void setScore(Integer score) {
+	public void setScore(String score) {
 		this.score = score;
 	}
 
-	public String getStatut() {
+	public Integer getSets() {
+		return this.sets;
+	}
+
+	public void setSets(Integer sets) {
+		this.sets = sets;
+	}
+
+	public Integer getStatut() {
 		return this.statut;
 	}
 
-	public void setStatut(String statut) {
+	public void setStatut(Integer statut) {
 		this.statut = statut;
 	}
 
-	public List<Soustournoi> getSoustournois() {
-		return this.soustournois;
+	public List<Appartenir> getAppartenirs() {
+		return this.appartenirs;
 	}
 
-	public void setSoustournois(List<Soustournoi> soustournois) {
-		this.soustournois = soustournois;
+	public void setAppartenirs(List<Appartenir> appartenirs) {
+		this.appartenirs = appartenirs;
 	}
 
-	public Soustournoi addSoustournoi(Soustournoi soustournoi) {
-		getSoustournois().add(soustournoi);
-		soustournoi.setTMatch(this);
+	public Appartenir addAppartenir(Appartenir appartenir) {
+		getAppartenirs().add(appartenir);
+		appartenir.setTMatch(this);
 
-		return soustournoi;
+		return appartenir;
 	}
 
-	public Soustournoi removeSoustournoi(Soustournoi soustournoi) {
-		getSoustournois().remove(soustournoi);
-		soustournoi.setTMatch(null);
+	public Appartenir removeAppartenir(Appartenir appartenir) {
+		getAppartenirs().remove(appartenir);
+		appartenir.setTMatch(null);
 
-		return soustournoi;
-	}
-
-	public Joueur getJoueur() {
-		return this.joueur;
-	}
-
-	public void setJoueur(Joueur joueur) {
-		this.joueur = joueur;
+		return appartenir;
 	}
 
 }

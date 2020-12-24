@@ -8,6 +8,7 @@ import javax.persistence.*;
  * 
  */
 @Entity
+@NamedQuery(name="Utilisateur.findAll", query="SELECT u FROM Utilisateur u")
 public class Utilisateur  {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

@@ -1,0 +1,10 @@
+body {
+  overflow-x: hidden;
+}
+.page-container .card .card-img {
+  height: 250px;
+}
+
+.page-container .btn-part {
+  padding: 30px 0;
+}

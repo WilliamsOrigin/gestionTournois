@@ -8,11 +8,16 @@ import javax.persistence.*;
  * 
  */
 @Entity
+@NamedQuery(name="Arbitre.findAll", query="SELECT a FROM Arbitre a")
 public class Arbitre  {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_arbitre")
 	private Integer idArbitre;
+
+	private String description;
+
+	private Integer isselected;
 
 	private String nationalite;
 
@@ -27,6 +32,22 @@ public class Arbitre  {
 
 	public void setIdArbitre(Integer idArbitre) {
 		this.idArbitre = idArbitre;
+	}
+
+	public String getDescription() {
+		return this.description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Integer getIsselected() {
+		return this.isselected;
+	}
+
+	public void setIsselected(Integer isselected) {
+		this.isselected = isselected;
 	}
 
 	public String getNationalite() {

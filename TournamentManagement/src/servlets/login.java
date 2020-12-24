@@ -2,6 +2,7 @@ package servlets;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -11,7 +12,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import beans.Joueur;
+import beans.TMatch;
 import beans.Utilisateur;
+import dao.AppartenirDao;
 import dao.UtilisateurDao;
 
 
@@ -22,7 +26,9 @@ public class login extends HttpServlet {
 	EntityManagerFactory emf = Persistence.createEntityManagerFactory("TournamentManagement");
 	EntityManager em = emf.createEntityManager();
 	
-	private UtilisateurDao userDao = new UtilisateurDao(em);
+	private UtilisateurDao userDao = new UtilisateurDao(em); 
+	private AppartenirDao appDao = new AppartenirDao(em);
+	
 	Utilisateur user;
 	
 	String error;
@@ -43,7 +49,14 @@ public class login extends HttpServlet {
 		}
 		
 		if (user != null) {
-			request.getSession().setAttribute("user", user);
+			Map<TMatch, List<Joueur>> infoSimpleGame = appDao.getInfoSimpleGame();
+			Map<TMatch, List<Joueur>> infoDoubleGame = appDao.getInfoDoubleGame();
+			
+			request.setAttribute("infoSimpleGame", infoSimpleGame);
+			request.setAttribute("infoDoubleGame", infoDoubleGame);
+			
+			//request.getSession().setAttribute("user", user);
+			
 			this.getServletContext().getRequestDispatcher("/home.jsp")
 				.forward(request, response);
 		}
