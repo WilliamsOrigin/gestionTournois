@@ -134,9 +134,7 @@
 				</div>
 			</div>
 		</main>
-
 	</div>
-
 
 	<script src="vendor/js/jquery.min.js"></script>
 	<script src="vendor/js/popper.min.js"></script>

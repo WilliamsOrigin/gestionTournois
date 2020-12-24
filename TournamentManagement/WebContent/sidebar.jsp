@@ -40,7 +40,7 @@
                   <span>General settings</span>
                 </li>
                 <li class="sidebar">
-                  <a href="home">
+                  <a href="${pageContext.request.contextPath}/home">
                     <i class="fa fa-home"></i>
                     <span>Home</span>
                   </a>
@@ -53,7 +53,9 @@
                   <div class="sidebar-submenu">
                     <ul>
                       <li>
-                        <a href="listOfPlayers.html">List of players </a>
+                        <a href="${pageContext.request.contextPath}/listPlayer">
+                        	List of players 
+                        </a>
                       </li>
                       <li>
                         <a href="updPlayer.html">Update a player</a>

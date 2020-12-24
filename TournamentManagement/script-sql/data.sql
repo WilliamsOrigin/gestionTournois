@@ -26,13 +26,13 @@ INSERT INTO  joueur(id_joueur, nom, nationalite, classementmondial, sexe, image,
 ( 6,' DanilM ' , ' Russie ' , ' 4 ', ' Masculin ', 'DanilM.jpg', 0, 'Lorem ipsum dolor sit ameted consectetur adipisicing elit Lorem Ipsum dolor sit amet.'), 
 ( 7,' RogerF ' , ' Suisse ' , ' 5 ', ' Masculin ', 'RogerF.jpg', 0, 'Lorem ipsum dolor sit ameted consectetur adipisicing elit Lorem Ipsum dolor sit amet.'), 
 ( 8,' StefanosT ' , ' Grece ' , ' 6 ', ' Masculin ', 'StefanosT.jpg', 0, 'Lorem ipsum dolor sit ameted consectetur adipisicing elit Lorem Ipsum dolor sit amet.'), 
-( 9,' AlexanderZ ' , ' Allemangne ' , ' 7 ', ' Masculin ', 'AlexanderZ.jpg', 0, 'Lorem ipsum dolor sit ameted consectetur adipisicing elit Lorem Ipsum dolor sit amet.'),
+( 9,' AlexanderZ ' , ' Allemagne ' , ' 7 ', ' Masculin ', 'AlexanderZ.jpg', 0, 'Lorem ipsum dolor sit ameted consectetur adipisicing elit Lorem Ipsum dolor sit amet.'),
 ( 10,' MatteoB ' , ' Italie ' , ' 10 ', ' Masculin ', 'MatteoB.jpg', 0, 'Lorem ipsum dolor sit ameted consectetur adipisicing elit Lorem Ipsum dolor sit amet.'),
 ( 11,' NaomiO ' , ' Japon ' , ' 3 ', ' Feminin ', 'NaomiO.jpg', 0, 'Lorem ipsum dolor sit ameted consectetur adipisicing elit Lorem Ipsum dolor sit amet.'),
 ( 12,' SofiaK ' , ' USA ' , ' 4 ', ' Feminin ', 'SofiaK.jpg', 0, 'Lorem ipsum dolor sit ameted consectetur adipisicing elit Lorem Ipsum dolor sit amet.'),
 ( 13,' BiancaA ' , ' Suisse ' , ' 7 ', ' Feminin ', 'BiancaA.jpg', 0, 'Lorem ipsum dolor sit ameted consectetur adipisicing elit Lorem Ipsum dolor sit amet.'),
 ( 14,' JohannaK ' , ' Angleterre ' , ' 14 ', ' Feminin ', 'JohannaK.jpg', 0, 'Lorem ipsum dolor sit ameted consectetur adipisicing elit Lorem Ipsum dolor sit amet.'),
-( 15,' EliseM ' , ' Allemagnee ' , ' 21 ', ' Feminin ', 'EliseM.jpg', 0, 'Lorem ipsum dolor sit ameted consectetur adipisicing elit Lorem Ipsum dolor sit amet.'),
+( 15,' EliseM ' , ' Allemagne ' , ' 21 ', ' Feminin ', 'EliseM.jpg', 0, 'Lorem ipsum dolor sit ameted consectetur adipisicing elit Lorem Ipsum dolor sit amet.'),
 ( 16,' VeronikaK ' , ' Russie ' , ' 46 ', ' Feminin ', 'VeronikaK.jpg', 0, 'Lorem ipsum dolor sit ameted consectetur adipisicing elit Lorem Ipsum dolor sit amet.');
 
 ALTER TABLE joueur ALTER COLUMN id_joueur RESTART WITH 17;
@@ -65,9 +65,9 @@ ALTER TABLE arbitre ALTER COLUMN id_arbitre RESTART WITH 12;
 INSERT INTO t_match(id_match, jour, heureDb, heureFin, court, score, statut, sets, categorie) VALUES
 (1, {d'2020-12-23'}, {t '12:20'}, {t '14:20'}, 1, '2 - 1', 1, 3, 1),
 (2, {d'2020-12-23'}, {t '10:00'}, {t '12:00'}, 4, '2 - 3', 1, 3, 2),
-(3, {d'2020-12-23'}, {t '14:30'}, {t '16:20'}, 5, '3 - 1', 0, 5, 3),
+(3, {d'2020-12-23'}, {t '14:30'}, {t '16:20'}, 5, '3 - 1', 1, 5, 3),
 (4, {d'2020-12-23'}, {t '16:00'}, {t '18:00'}, 7, '5 - 4', 1, 5, 4),
-(5, {d'2020-12-23'}, {t '12:20'}, {t '14:20'}, 9, '5 - 4', 0, 5, 5);
+(5, {d'2020-12-23'}, {t '12:20'}, {t '14:20'}, 9, '5 - 4', 1, 5, 5);
 
 ALTER TABLE t_match ALTER COLUMN id_match RESTART WITH 6;
 

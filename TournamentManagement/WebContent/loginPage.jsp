@@ -56,7 +56,7 @@
                     <br />
 
                     <!--Body-->
-                    <form method="POST" action="Login" class="text-center">
+                    <form method="POST" action="login" class="text-center">
                       <!-- Email -->
                       <input
                         type="text"

@@ -19,7 +19,7 @@ public class JoueurDao {
 	
 	@SuppressWarnings("unchecked")
 	public List<Joueur> findAllPlayers() {
-		return em.createQuery("select j from joueur j").getResultList();
+		return em.createQuery("select j from Joueur j").getResultList();
 	}
 	
 	public Joueur findPlayer(int id) {
@@ -28,12 +28,12 @@ public class JoueurDao {
 	
 	@SuppressWarnings("unchecked")
 	public List<Joueur> findSelectedPlayers(int isSelected) {
-		return em.createQuery("select j from joueur j where j.isselected = :selected")
+		return em.createQuery("select j from Joueur j where j.isselected = :selected")
 				.setParameter("selected", isSelected).getResultList();
 	}
 	
 	public boolean existRanking(int rank) {
-		TypedQuery<Joueur> query = em.createQuery("select j from joueur j where j.classementmondial = :rank", Joueur.class);
+		TypedQuery<Joueur> query = em.createQuery("select j from Joueur j where j.classementmondial = :rank", Joueur.class);
 		Joueur player = query.setParameter("rank", rank).getSingleResult();
 		if (player != null)
 			return true;
@@ -41,7 +41,7 @@ public class JoueurDao {
 	}
 	
 	public boolean existName(String name) {
-		TypedQuery<Joueur> query = em.createQuery("select j from joueur j where j.name = :name", Joueur.class);
+		TypedQuery<Joueur> query = em.createQuery("select j from Joueur j where j.name = :name", Joueur.class);
 		Joueur player = query.setParameter("name", name).getSingleResult();
 		if (player != null)
 			return true;
