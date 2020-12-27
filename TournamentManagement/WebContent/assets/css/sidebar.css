@@ -409,3 +409,20 @@ body {
 .chiller-theme .sidebar-footer > a:last-child {
   border-right: none;
 }
+
+/*-----------------------------main-------------------------------------------------*/
+.page-container {
+  padding-left: 290px;
+  clear: both;
+}
+
+.page-container .jumbotron .head-img {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 5px;
+}
+
+.dontShow {
+	display: none;
+}
+

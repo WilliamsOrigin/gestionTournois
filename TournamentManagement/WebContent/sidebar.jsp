@@ -11,7 +11,7 @@
 			<div class="sidebar-header">
 				<div class="user-pic">
 					<img class="img-responsive img-rounded"
-						src="./assets/imgs/profilePic.jpg" alt="User picture" />
+						src="./assets/img/profile.jpg" alt="User picture" />
 				</div>
 				<div class="user-info">
 					<span class="user-name">Bertrand </span> <span class="user-role">Administrator</span>
@@ -58,7 +58,7 @@
                         </a>
                       </li>
                       <li>
-                        <a href="updPlayer.html">Update a player</a>
+                        <a href="${pageContext.request.contextPath}/updatePlayer">Update a player</a>
                       </li>
                     </ul>
                   </div>

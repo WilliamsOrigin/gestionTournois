@@ -9,7 +9,7 @@ body {
 
 .bgImage {
   background: linear-gradient(127deg, var(--peak1), var(--peak2)),
-    url("../imgs/fp1.jpg") no-repeat;
+    url("../img/fp1.jpg") no-repeat;
   background-size: cover;
   width: 100%;
   height: 610px;

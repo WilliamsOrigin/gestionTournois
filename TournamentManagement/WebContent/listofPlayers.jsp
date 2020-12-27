@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="vendor/css/mdb.min.css" />
 <link rel="stylesheet" href="vendor/css/fontawesome.min.css" />
 <link rel="stylesheet" href="vendor/css/animate.css" />
-<link rel="stylesheet" href="assets/css/style.css" />
+<link rel="stylesheet" href="assets/css/sidebar.css" />
 <link rel="stylesheet" href="assets/css/listOfPl.css" />
 </head>
 <body>
@@ -27,9 +27,9 @@
 				<br />
 				<div class="row">
 					<c:forEach items="${players}" var="player">
-						<div class="col-sm-4">
+						<div class="col-sm-4 mb-5">
 							<div class="card">
-								<img src="./assets/imgs/${player.getImage() }"
+								<img src="./assets/img/${player.getImage() }"
 									class="img-fluid card-img" />
 								<div class="card-body">
 									<h5 class="card-title">${player.getNom() }
@@ -48,21 +48,35 @@
 					</c:forEach>
 				</div>
 			</div>
-			<br />
-			<form action="listPlayer" method="POST">
-				<button type="submit" class="btn peach-gradient">
-					<i class="fas fa-plus-circle fa-lg p-2"></i> Add a new player
-				</button>
-			</form>
+			<button type="submit" class="btn peach-gradient" id="btnToHide">
+				<i class="fas fa-plus-circle fa-lg p-2"></i> Add a new player
+			</button>
 			<br /> <br />
+			
 			<%
-				String displayForm = (String) request.getAttribute("displayForm");
-				if (displayForm != null) {
+				String error = (String) request.getAttribute("error");
+				if (error != null) {
 			%>
-
-			<div class="row">
+				<div class="alert alert-danger" role="alert">
+		          <% out.print(error);  %>
+		          <button
+		            type="button"
+		            class="close"
+		            data-dismiss="alert"
+		            aria-label="Close"
+		          >
+		            <span aria-hidden="true">&times;</span>
+		          </button>
+		        </div>
+		        <br />
+			 
+			<%
+				}
+			%>
+			
+			<div class="row" style="display: none" id="rowToHide">
 				<div class="col-sm-12">
-					<form action="" method="POST">
+					<form action="listPlayer" method="POST">
 						<div class="container">
 							<div class="row">
 								<div class="col-sm-5">
@@ -283,7 +297,7 @@
 								<div class="col-sm-3">
 									<input type="number" name="classementMondial"
 										placeholder="World ranking" class="form-control" min="1"
-										max="30" required />
+										max="100" required />
 								</div>
 							</div>
 							<br />
@@ -291,18 +305,14 @@
 								<div class="col-sm-3">
 									<select name="sexe" class="form-control" required>
 										<option value="">Sexe</option>
-										<option value="masculin">Masculin</option>
+										<option value="Masculin">Masculin</option>
 										<option value="Feminin">Feminin</option>
 									</select>
 								</div>
-								<div class="col-sm-4">
-									<input type="file" class="form-control" name="image"
-										value="image" />
-								</div>
 								<div class="col-sm-5">
 									<textarea name="description" class="form-control" required>
-                      Description.....
-                    </textarea>
+				                      Description.....
+				                    </textarea>
 								</div>
 							</div>
 							<div class="row btn-part">
@@ -316,21 +326,15 @@
 					</form>
 				</div>
 			</div>
-
-			<%
-				}
-			%>
 		</main>
 	</div>
-
-
 	<script src="vendor/js/jquery.min.js"></script>
 	<script src="vendor/js/popper.min.js"></script>
 	<script src="vendor/js/bootstrap.min.js"></script>
 	<script src="vendor/js/mdb.min.js"></script>
 	<script src="vendor/js/wow.min.js"></script>
 	<script src="vendor/js/fontawesome.min.js"></script>
-	<script src="assets/js/script.js"></script>
+	<script src="assets/js/index.js"></script>
 	<script>
 		new WOW().init();
 	</script>

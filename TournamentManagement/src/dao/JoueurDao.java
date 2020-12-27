@@ -1,6 +1,6 @@
 package dao;
 
- import java.util.List;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
@@ -19,45 +19,59 @@ public class JoueurDao {
 	
 	@SuppressWarnings("unchecked")
 	public List<Joueur> findAllPlayers() {
-		return em.createQuery("select j from Joueur j").getResultList();
+		return em.createQuery("select j from Joueur j order by j.classementmondial").getResultList();
 	}
 	
 	public Joueur findPlayer(int id) {
 		return em.find(Joueur.class, id);
 	}
 	
+	public Joueur findPlayerByName(String name) {
+		TypedQuery<Joueur> query = em.createQuery("select j from Joueur j where j.nom = :name", Joueur.class);
+		List<Joueur> joueurs = query.setParameter("name", name).getResultList();
+		
+		if (joueurs.size() > 0) 
+			return joueurs.get(0);
+		
+		return null;
+	}
+	
 	@SuppressWarnings("unchecked")
 	public List<Joueur> findSelectedPlayers(int isSelected) {
-		return em.createQuery("select j from Joueur j where j.isselected = :selected")
+		return em.createQuery("select j from Joueur j where j.iselected = :selected")
 				.setParameter("selected", isSelected).getResultList();
 	}
 	
-	public boolean existRanking(int rank) {
-		TypedQuery<Joueur> query = em.createQuery("select j from Joueur j where j.classementmondial = :rank", Joueur.class);
-		Joueur player = query.setParameter("rank", rank).getSingleResult();
-		if (player != null)
-			return true;
-		return false;
+	public boolean existRanking(int rank, String sexe) {
+		TypedQuery<Joueur> query = em.createQuery("select j from Joueur j where j.classementmondial = :rank "
+				+ "AND j.sexe = :sexe", Joueur.class);
+		List<Joueur> joueurs = query.setParameter("rank", rank)
+							.setParameter("sexe", sexe).getResultList();
+				
+		return joueurs.size() > 0;
 	}
 	
 	public boolean existName(String name) {
-		TypedQuery<Joueur> query = em.createQuery("select j from Joueur j where j.name = :name", Joueur.class);
-		Joueur player = query.setParameter("name", name).getSingleResult();
-		if (player != null)
-			return true;
-		return false;
+		TypedQuery<Joueur> query = em.createQuery("select j from Joueur j where j.nom = :name", Joueur.class);
+		List<Joueur> joueurs = query.setParameter("name", name).getResultList();
+		
+		return joueurs.size() > 0;
 	}
 	
 	public void addPlayer(Joueur Player) {
 		em.getTransaction().begin();
 		em.persist(Player);
+		em.flush();
 		em.getTransaction().commit();
 	}
 	
 	public void updatePlayer(Joueur customPlayer) {
-		em.getTransaction().begin();
-		em.merge(customPlayer);
-		em.getTransaction().commit();
+		Joueur player = findPlayer(customPlayer.getIdJoueur());
+		if (player != null) {
+			em.getTransaction().begin();
+			player.replaceBy(customPlayer);
+			em.getTransaction().commit();
+		}
 	}
 
 	public void deletePlayer(int id) {

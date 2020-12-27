@@ -422,3 +422,7 @@ body {
   margin-bottom: 5px;
 }
 
+.dontShow {
+	display: none;
+}
+

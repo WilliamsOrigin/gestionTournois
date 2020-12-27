@@ -18,22 +18,22 @@ INSERT INTO utilisateur (idutilisateur, pseudo, motdepasse, role) VALUES
 ALTER TABLE utilisateur ALTER COLUMN idutilisateur RESTART WITH 3;
 
 INSERT INTO  joueur(id_joueur, nom, nationalite, classementmondial, sexe, image, isSelected, description) VALUES
-( 1, ' RaphaelN ' , ' Espagne ' , ' 2 ', ' Masculin ', 'RaphaelN.jpg', 0, 'Lorem ipsum dolor sit ameted consectetur adipisicing elit Lorem Ipsum dolor sit amet.'), 
-( 2,  ' NovakD ' , ' Croatie ' , ' 1 ', ' Masculin ', 'NovakD.jpg', 0, 'Lorem ipsum dolor sit ameted consectetur adipisicing elit Lorem Ipsum dolor sit amet.'), 
-( 3,' SerenaW ' , ' USA ' , ' 10 ', ' Feminin', 'SerenaW.jpg', 0, 'Lorem ipsum dolor sit ameted consectetur adipisicing elit Lorem Ipsum dolor sit amet.'), 
-( 4,' AshleighB ' , ' Australie ' , ' 1 ', ' Feminin', 'AshleighB.jpg', 0, 'Lorem ipsum dolor sit ameted consectetur adipisicing elit Lorem Ipsum dolor sit amet.'), 
-( 5,' DominicT ' , ' Autriche ' , ' 3 ', ' Masculin ', 'DominicT.jpg', 0, 'Lorem ipsum dolor sit ameted consectetur adipisicing elit Lorem Ipsum dolor sit amet.'), 
-( 6,' DanilM ' , ' Russie ' , ' 4 ', ' Masculin ', 'DanilM.jpg', 0, 'Lorem ipsum dolor sit ameted consectetur adipisicing elit Lorem Ipsum dolor sit amet.'), 
-( 7,' RogerF ' , ' Suisse ' , ' 5 ', ' Masculin ', 'RogerF.jpg', 0, 'Lorem ipsum dolor sit ameted consectetur adipisicing elit Lorem Ipsum dolor sit amet.'), 
-( 8,' StefanosT ' , ' Grece ' , ' 6 ', ' Masculin ', 'StefanosT.jpg', 0, 'Lorem ipsum dolor sit ameted consectetur adipisicing elit Lorem Ipsum dolor sit amet.'), 
-( 9,' AlexanderZ ' , ' Allemagne ' , ' 7 ', ' Masculin ', 'AlexanderZ.jpg', 0, 'Lorem ipsum dolor sit ameted consectetur adipisicing elit Lorem Ipsum dolor sit amet.'),
-( 10,' MatteoB ' , ' Italie ' , ' 10 ', ' Masculin ', 'MatteoB.jpg', 0, 'Lorem ipsum dolor sit ameted consectetur adipisicing elit Lorem Ipsum dolor sit amet.'),
-( 11,' NaomiO ' , ' Japon ' , ' 3 ', ' Feminin ', 'NaomiO.jpg', 0, 'Lorem ipsum dolor sit ameted consectetur adipisicing elit Lorem Ipsum dolor sit amet.'),
-( 12,' SofiaK ' , ' USA ' , ' 4 ', ' Feminin ', 'SofiaK.jpg', 0, 'Lorem ipsum dolor sit ameted consectetur adipisicing elit Lorem Ipsum dolor sit amet.'),
-( 13,' BiancaA ' , ' Suisse ' , ' 7 ', ' Feminin ', 'BiancaA.jpg', 0, 'Lorem ipsum dolor sit ameted consectetur adipisicing elit Lorem Ipsum dolor sit amet.'),
-( 14,' JohannaK ' , ' Angleterre ' , ' 14 ', ' Feminin ', 'JohannaK.jpg', 0, 'Lorem ipsum dolor sit ameted consectetur adipisicing elit Lorem Ipsum dolor sit amet.'),
-( 15,' EliseM ' , ' Allemagne ' , ' 21 ', ' Feminin ', 'EliseM.jpg', 0, 'Lorem ipsum dolor sit ameted consectetur adipisicing elit Lorem Ipsum dolor sit amet.'),
-( 16,' VeronikaK ' , ' Russie ' , ' 46 ', ' Feminin ', 'VeronikaK.jpg', 0, 'Lorem ipsum dolor sit ameted consectetur adipisicing elit Lorem Ipsum dolor sit amet.');
+( 1, 'RaphaelN' , 'Espagne' , 2 , 'Masculin', 'RaphaelN.jpg', 0, 'Lorem ipsum dolor sit ameted consectetur adipisicing elit Lorem Ipsum dolor sit amet.'), 
+( 2,  'NovakD' , 'Croatie' , 1 , 'Masculin', 'NovakD.jpg', 0, 'Lorem ipsum dolor sit ameted consectetur adipisicing elit Lorem Ipsum dolor sit amet.'), 
+( 3,'SerenaW' , 'USA' , 10, 'Feminin', 'SerenaW.jpg', 0, 'Lorem ipsum dolor sit ameted consectetur adipisicing elit Lorem Ipsum dolor sit amet.'), 
+( 4,' AshleighB' , 'Australie' , 1 , 'Feminin', 'AshleighB.jpg', 0, 'Lorem ipsum dolor sit ameted consectetur adipisicing elit Lorem Ipsum dolor sit amet.'), 
+( 5,'DominicT' , 'Autriche' ,  3, 'Masculin', 'DominicT.jpg', 0, 'Lorem ipsum dolor sit ameted consectetur adipisicing elit Lorem Ipsum dolor sit amet.'), 
+( 6,'DanilM' , 'Russie' ,  4, 'Masculin', 'DanilM.jpg', 0, 'Lorem ipsum dolor sit ameted consectetur adipisicing elit Lorem Ipsum dolor sit amet.'), 
+( 7,'RogerF' , 'Suisse' , 5 , 'Masculin', 'RogerF.jpg', 0, 'Lorem ipsum dolor sit ameted consectetur adipisicing elit Lorem Ipsum dolor sit amet.'), 
+( 8,'StefanosT' , 'Grece' , 6, 'Masculin', 'StefanosT.jpg', 0, 'Lorem ipsum dolor sit ameted consectetur adipisicing elit Lorem Ipsum dolor sit amet.'), 
+( 9,'AlexanderZ' , 'Allemagne' , 7, 'Masculin', 'AlexanderZ.jpg', 0, 'Lorem ipsum dolor sit ameted consectetur adipisicing elit Lorem Ipsum dolor sit amet.'),
+( 10,'MatteoB' , 'Italie' , 10, 'Masculin', 'MatteoB.jpg', 0, 'Lorem ipsum dolor sit ameted consectetur adipisicing elit Lorem Ipsum dolor sit amet.'),
+( 11,'NaomiO' , 'Japon' , 3 , 'Feminin', 'NaomiO.jpg', 0, 'Lorem ipsum dolor sit ameted consectetur adipisicing elit Lorem Ipsum dolor sit amet.'),
+( 12,'SofiaK' , 'USA' , 4 , 'Feminin', 'SofiaK.jpg', 0, 'Lorem ipsum dolor sit ameted consectetur adipisicing elit Lorem Ipsum dolor sit amet.'),
+( 13,'BiancaA' , 'Suisse' , 7 , 'Feminin', 'BiancaA.jpg', 0, 'Lorem ipsum dolor sit ameted consectetur adipisicing elit Lorem Ipsum dolor sit amet.'),
+( 14,'JohannaK' , 'Angleterre' , 14, 'Feminin', 'JohannaK.jpg', 0, 'Lorem ipsum dolor sit ameted consectetur adipisicing elit Lorem Ipsum dolor sit amet.'),
+( 15,'EliseM' , 'Allemagne' , 21 , 'Feminin', 'EliseM.jpg', 0, 'Lorem ipsum dolor sit ameted consectetur adipisicing elit Lorem Ipsum dolor sit amet.'),
+( 16,'VeronikaK' , 'Russie' , 46 , 'Feminin', 'VeronikaK.jpg', 0, 'Lorem ipsum dolor sit ameted consectetur adipisicing elit Lorem Ipsum dolor sit amet.');
 
 ALTER TABLE joueur ALTER COLUMN id_joueur RESTART WITH 17;
 
@@ -48,17 +48,17 @@ INSERT INTO equipe(id_equipe, id_joueur, id_equipier) VALUES
 ALTER TABLE equipe ALTER COLUMN id_equipe RESTART WITH 7;
 
 INSERT INTO arbitre(id_arbitre, nom, nationalite, isSelected, description) VALUES 
-( 1, ' MarijanaV ' , ' Serbie ', 0, 'Lorem ipsum dolor sit ameted consectetur adipisicing elit Lorem Ipsum dolor sit amet.'),
-( 2,' JulieK ' , ' Norvege ', 0, 'Lorem ipsum dolor sit ameted consectetur adipisicing elit Lorem Ipsum dolor sit amet.'),
-( 3,' AurelieT ' , ' France ', 0, 'Lorem ipsum dolor sit ameted consectetur adipisicing elit Lorem Ipsum dolor sit amet.'), 
-( 4,' PaulaVieiraS ' , ' Bresil ', 0, 'Lorem ipsum dolor sit ameted consectetur adipisicing elit Lorem Ipsum dolor sit amet.'), 
-( 5,' AliNili ' , ' Iran ', 0, 'Lorem ipsum dolor sit ameted consectetur adipisicing elit Lorem Ipsum dolor sit amet.'),
-( 6,' CarlosR ' , ' Portugal ', 0, 'Lorem ipsum dolor sit ameted consectetur adipisicing elit Lorem Ipsum dolor sit amet.'),
-( 7,' DamianS ' , ' Argentine ', 0, 'Lorem ipsum dolor sit ameted consectetur adipisicing elit Lorem Ipsum dolor sit amet.'),
-( 8,' CarlosB ' , ' Bresil ', 0, 'Lorem ipsum dolor sit ameted consectetur adipisicing elit Lorem Ipsum dolor sit amet.'),
-( 9,' JohnB ' , ' Australie ', 0, 'Lorem ipsum dolor sit ameted consectetur adipisicing elit Lorem Ipsum dolor sit amet.'),
-( 10,' FergusM ' , ' Irlande ', 0, 'Lorem ipsum dolor sit ameted consectetur adipisicing elit Lorem Ipsum dolor sit amet.'),
-( 11,' KaderNouni ' , ' France ', 0, 'Lorem ipsum dolor sit ameted consectetur adipisicing elit Lorem Ipsum dolor sit amet.');
+( 1, 'MarijanaV' , 'Serbie', 0, 'Lorem ipsum dolor sit ameted consectetur adipisicing elit Lorem Ipsum dolor sit amet.'),
+( 2,'JulieK' , 'Norvege', 0, 'Lorem ipsum dolor sit ameted consectetur adipisicing elit Lorem Ipsum dolor sit amet.'),
+( 3,'AurelieT' , 'France', 0, 'Lorem ipsum dolor sit ameted consectetur adipisicing elit Lorem Ipsum dolor sit amet.'), 
+( 4,'PaulaVieiraS' , 'Bresil', 0, 'Lorem ipsum dolor sit ameted consectetur adipisicing elit Lorem Ipsum dolor sit amet.'), 
+( 5,'AliNili' , 'Iran', 0, 'Lorem ipsum dolor sit ameted consectetur adipisicing elit Lorem Ipsum dolor sit amet.'),
+( 6,'CarlosR' , 'Portugal', 0, 'Lorem ipsum dolor sit ameted consectetur adipisicing elit Lorem Ipsum dolor sit amet.'),
+( 7,'DamianS' , 'Argentine', 0, 'Lorem ipsum dolor sit ameted consectetur adipisicing elit Lorem Ipsum dolor sit amet.'),
+( 8,'CarlosB' , 'Bresil', 0, 'Lorem ipsum dolor sit ameted consectetur adipisicing elit Lorem Ipsum dolor sit amet.'),
+( 9,'JohnB' , 'Australie', 0, 'Lorem ipsum dolor sit ameted consectetur adipisicing elit Lorem Ipsum dolor sit amet.'),
+( 10,'FergusM' , 'Irlande', 0, 'Lorem ipsum dolor sit ameted consectetur adipisicing elit Lorem Ipsum dolor sit amet.'),
+( 11,'KaderNouni' , 'France', 0, 'Lorem ipsum dolor sit ameted consectetur adipisicing elit Lorem Ipsum dolor sit amet.');
 
 ALTER TABLE arbitre ALTER COLUMN id_arbitre RESTART WITH 12;
 

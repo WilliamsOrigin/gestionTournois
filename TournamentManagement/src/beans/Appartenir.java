@@ -1,6 +1,5 @@
 package beans;
 
-import java.io.Serializable;
 import javax.persistence.*;
 
 
@@ -11,8 +10,6 @@ import javax.persistence.*;
 @Entity
 @NamedQuery(name="Appartenir.findAll", query="SELECT a FROM Appartenir a")
 public class Appartenir  {
-	private static final long serialVersionUID = 1L;
-
 	@Id
 	@Column(name="id_app")
 	private Integer idApp;

@@ -55,7 +55,7 @@ public class login extends HttpServlet {
 			request.setAttribute("infoSimpleGame", infoSimpleGame);
 			request.setAttribute("infoDoubleGame", infoDoubleGame);
 			
-			//request.getSession().setAttribute("user", user);
+			request.getSession().setAttribute("user", user);
 			
 			this.getServletContext().getRequestDispatcher("/home.jsp")
 				.forward(request, response);

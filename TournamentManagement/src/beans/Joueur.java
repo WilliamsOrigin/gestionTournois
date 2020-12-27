@@ -10,7 +10,6 @@ import javax.persistence.*;
 @Entity
 @NamedQuery(name="Joueur.findAll", query="SELECT j FROM Joueur j")
 public class Joueur  {
-
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_joueur")
@@ -31,6 +30,26 @@ public class Joueur  {
 	private String sexe;
 
 	public Joueur() {
+	}
+	
+	public Joueur(Integer classementmondial, String description, String image, String nationalite, String nom,
+			String sexe) {
+		this.classementmondial = classementmondial;
+		this.description = description;
+		this.image = image;
+		this.nationalite = nationalite;
+		this.nom = nom;
+		this.sexe = sexe;
+		this.isselected = 0;
+	}
+	
+	public void replaceBy(Joueur j) {
+		this.classementmondial = j.classementmondial;
+		this.description = j.description;
+		this.image = j.image;
+		this.nationalite = j.nationalite;
+		this.nom = j.nom;
+		this.sexe = j.sexe;
 	}
 
 	public Integer getIdJoueur() {

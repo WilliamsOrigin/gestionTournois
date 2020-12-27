@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="vendor/css/mdb.min.css" />
 <link rel="stylesheet" href="vendor/css/fontawesome.min.css" />
 <link rel="stylesheet" href="vendor/css/animate.css" />
-<link rel="stylesheet" href="assets/css/style.css" />
+<link rel="stylesheet" href="assets/css/sidebar.css" />
 </head>
 <body>
 
@@ -33,7 +33,7 @@
 							<div class="jumbotron text-center hoverable p-4">
 								<div class="row text-center">
 									<div class="col-sm-4">
-										<img src="./assets/imgs/${games.value.get(0).getImage()}"
+										<img src="./assets/img/${games.value.get(0).getImage()}"
 											class="img-fluid rounded-circle head-img" alt="" />
 										<p class="text-center">${games.value.get(0).getNom()}</p>
 									</div>
@@ -41,14 +41,14 @@
 										<p class="text-center mt-2 text-black-50 h1">${games.key.getScore() }</p>
 									</div>
 									<div class="col-sm-4">
-										<img src="./assets/imgs/${games.value.get(1).getImage()}"
+										<img src="./assets/img/${games.value.get(1).getImage()}"
 											class="img-fluid rounded-circle head-img" alt="" />
 										<p class="text-center">${games.value.get(1).getNom()}</p>
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-sm-8">
-										<img src="./assets/imgs/court.jpg" class="img-fluid rounded" />
+										<img src="./assets/img/court.jpg" class="img-fluid rounded" />
 									</div>
 									<div class="col-sm-4 pt-4 text-justify">
 										<p>
@@ -83,9 +83,9 @@
 								<div class="row text-center">
 									<div class="col-sm-5">
 										<span> <img
-											src="./assets/imgs/${games.value.get(0).getImage()}"
+											src="./assets/img/${games.value.get(0).getImage()}"
 											class="img-fluid rounded-circle mr-1 head-img" alt="" /> <img
-											src="./assets/imgs/${games.value.get(1).getImage()}"
+											src="./assets/img/${games.value.get(1).getImage()}"
 											class="img-fluid rounded-circle head-img" alt="" />
 										</span>
 										<p class="text-center">${games.value.get(0).getNom()}ft
@@ -96,9 +96,9 @@
 									</div>
 									<div class="col-sm-5">
 										<span> <img
-											src="./assets/imgs/${games.value.get(2).getImage()}"
+											src="./assets/img/${games.value.get(2).getImage()}"
 											class="img-fluid rounded-circle mr-1 head-img" alt="" /> <img
-											src="./assets/imgs/${games.value.get(3).getImage()}"
+											src="./assets/img/${games.value.get(3).getImage()}"
 											class="img-fluid rounded-circle head-img" alt="" />
 										</span>
 										<p class="text-center">${games.value.get(2).getNom()}ft
@@ -107,7 +107,7 @@
 								</div>
 								<div class="row">
 									<div class="col-8">
-										<img src="./assets/imgs/court2.jpg" class="img-fluid rounded" />
+										<img src="./assets/img/court2.jpg" class="img-fluid rounded" />
 									</div>
 									<div class="col-sm-4 pt-4 text-justify">
 										<p>
@@ -142,7 +142,7 @@
 	<script src="vendor/js/mdb.min.js"></script>
 	<script src="vendor/js/wow.min.js"></script>
 	<script src="vendor/js/fontawesome.min.js"></script>
-	<script src="assets/js/script.js"></script>
+	<script src="assets/js/index.js"></script>
 	<script>
 		new WOW().init();
 	</script>

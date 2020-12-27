@@ -24,4 +24,36 @@
 		<servlet-name>listPlayer</servlet-name>
 		<url-pattern>/listPlayer</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>updatePlayer</servlet-name>
+		<servlet-class>servlets.players.updatePlayer</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>updatePlayer</servlet-name>
+		<url-pattern>/updatePlayer</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>findPlayer</servlet-name>
+		<servlet-class>servlets.players.findPlayer</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>findPlayer</servlet-name>
+		<url-pattern>/findPlayer</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>deletePlayer</servlet-name>
+		<servlet-class>servlets.players.deletePlayer</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>deletePlayer</servlet-name>
+		<url-pattern>/deletePlayer</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>updateImagePlayer</servlet-name>
+		<servlet-class>servlets.players.updateImage</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>updateImagePlayer</servlet-name>
+		<url-pattern>/updateImagePlayer</url-pattern>
+	</servlet-mapping>
 </web-app>

@@ -14,7 +14,7 @@
       href="vendor/css/fontawesome.min.css"
     />
     <link rel="stylesheet" href="vendor/css/animate.css" />
-    <link rel="stylesheet" href="assets/css/index.css" />
+    <link rel="stylesheet" href="assets/css/login.css" />
   </head>
   <body>
   	<div class="justify-content-center align-items-center">
@@ -22,7 +22,7 @@
 	      	String error = (String) request.getAttribute("error");
 	        if (error != null) {
 	    %>
-	    <div class="alert alert-light" role="alert">
+	    <div class="alert alert-danger" role="alert">
 			<% out.print(error+" "); %>
 			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
     			<span aria-hidden="true">&times;</span>

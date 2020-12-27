@@ -3,10 +3,10 @@
 	<persistence-unit name="TournamentManagement" transaction-type="RESOURCE_LOCAL">
 		<class>beans.Arbitre</class>
 		<class>beans.Utilisateur</class>
-		<class>beans.Joueur</class>
 		<class>beans.Appartenir</class>
 		<class>beans.Equipe</class>
 		<class>beans.TMatch</class>
+		<class>beans.Joueur</class>
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/postgres"/>
 			<property name="javax.persistence.jdbc.user" value="gtournoi"/>

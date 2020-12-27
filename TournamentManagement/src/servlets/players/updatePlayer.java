@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import beans.Joueur;
 import dao.JoueurDao;
 
-public class listofPlayers extends HttpServlet {
+public class updatePlayer extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -33,46 +33,71 @@ public class listofPlayers extends HttpServlet {
 		
 		request.setAttribute("players", players);
 		
-		this.getServletContext().getRequestDispatcher("/listofPlayers.jsp")
+		this.getServletContext().getRequestDispatcher("/updatePlayer.jsp")
 			.forward(request, response);							
 	}
 	
 	public void doPost(HttpServletRequest request, HttpServletResponse response) 
 	throws ServletException, IOException {
 		error = "";
+		int id = Integer.parseInt(request.getParameter("idj"));
 		String nom = request.getParameter("nom").trim();
 		String nationalite = request.getParameter("nationalite").trim();
-		int classementMd = Integer.parseInt(request.getParameter("classementMondial").trim());
+		String classementMd = request.getParameter("classementMondial");
+		int rank;
 		String sexe = request.getParameter("sexe").trim();
 		String description = request.getParameter("description").trim();
-		String img = "profile.jpg";
+		
+		Joueur joueur = joueurDao.findPlayer(id);
 		
 		final Pattern pattern = Pattern.compile("^[A-Za-z, ]++$");
 		final Pattern pattern_textArea = Pattern.compile("^[a-zA-Z0-9\\.,\\s]+$");
 		
-		if(joueurDao.existName(nom)) {
-			error += "Un joueur de ce nom existe déjà!! \n";
-		}
-		else if (nom.isEmpty() || !pattern.matcher(nom).matches()) {
-			error += "Veuillez entrer un nom valide \n";
+		if (nom.isEmpty())
+			nom = joueur.getNom();
+		else {
+			if(!joueur.getNom().equals(nom) ) {
+				if (joueurDao.existName(nom))
+					error += "Un joueur de ce nom existe déjà!! \n";
+				else if (!pattern.matcher(nom).matches()) {
+					error += "Veuillez entrer un nom valide \n";
+				}
+			}
 		}
 		
-		if (joueurDao.existRanking(classementMd, sexe))
-			error += "Désolé Mais ce classement existe déjà pour ce sexe \n";
+		if (nationalite.isEmpty()) 
+			nationalite = joueur.getNationalite();
 		
-		if (!pattern_textArea.matcher(description).matches())
-			error += "Veuillez entrer une description valide \n";
+		if (sexe.isEmpty())
+			sexe = joueur.getSexe();
+		
+		if (classementMd.isEmpty())
+			rank = joueur.getClassementmondial();
+		else {
+			rank = Integer.parseInt(classementMd.trim());
+			if (joueur.getClassementmondial() != rank) {
+				if (joueurDao.existRanking(rank, sexe))
+					error += "Désolé Mais ce classement existe déjà pour ce sexe \n";
+			}
+		}
+		
+		if (description.isEmpty())
+			description = joueur.getDescription();
+		else {
+			if (!pattern_textArea.matcher(description).matches())
+				error += "Veuillez entrer une description valide \n";
+		}
 		
 		if (error.isEmpty()) {
-			Joueur player = new Joueur(classementMd, description, img, nationalite, nom, sexe);			
-			joueurDao.addPlayer(player);
+			Joueur player = new Joueur(rank, description, joueur.getImage(), nationalite, nom, sexe);			
+			player.setIdJoueur(joueur.getIdJoueur());
+			joueurDao.updatePlayer(player);
 		}
-		else 
+		else {
 			request.setAttribute("error", error);
+		}
 		
-		List<Joueur> players = joueurDao.findAllPlayers();
-		request.setAttribute("players", players);
-		this.getServletContext().getRequestDispatcher("/listofPlayers.jsp")
+		this.getServletContext().getRequestDispatcher("/updatePlayer.jsp")
 			.forward(request, response);							
 	}
 }
