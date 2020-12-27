@@ -16,6 +16,8 @@
 		<servlet-name>home</servlet-name>
 		<url-pattern>/home</url-pattern>
 	</servlet-mapping>
+	
+	
 	<servlet>
 		<servlet-name>listPlayer</servlet-name>
 		<servlet-class>servlets.players.listofPlayers</servlet-class>
@@ -55,5 +57,39 @@
 	<servlet-mapping>
 		<servlet-name>updateImagePlayer</servlet-name>
 		<url-pattern>/updateImagePlayer</url-pattern>
+	</servlet-mapping>
+	
+	
+	<servlet>
+		<servlet-name>listReferee</servlet-name>
+		<servlet-class>servlets.referees.listofReferees</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>listReferee</servlet-name>
+		<url-pattern>/listReferee</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>updateReferee</servlet-name>
+		<servlet-class>servlets.referees.updateReferee</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>updateReferee</servlet-name>
+		<url-pattern>/updateReferee</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>findReferee</servlet-name>
+		<servlet-class>servlets.referees.findReferee</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>findReferee</servlet-name>
+		<url-pattern>/findReferee</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>deleteReferee</servlet-name>
+		<servlet-class>servlets.referees.deleteReferee</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>deleteReferee</servlet-name>
+		<url-pattern>/deleteReferee</url-pattern>
 	</servlet-mapping>
 </web-app>

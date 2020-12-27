@@ -3,6 +3,7 @@ package dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 
 import beans.Arbitre;
 
@@ -18,29 +19,50 @@ public class ArbitreDao {
 	
 	@SuppressWarnings("unchecked")
 	public List<Arbitre> findAllReferees() {
-		return em.createQuery("select a from arbitre a").getResultList();
+		return em.createQuery("select a from Arbitre a").getResultList();
 	}
 	
 	public Arbitre findReferee(int id) {
 		return em.find(Arbitre.class, id);
 	}
 	
+	public Arbitre findRefereeByName(String name) {
+		TypedQuery<Arbitre> query = em.createQuery("select a from Arbitre a where a.nom = :name", Arbitre.class);
+		List<Arbitre> Arbitres = query.setParameter("name", name).getResultList();
+		
+		if (Arbitres.size() > 0) 
+			return Arbitres.get(0);
+		
+		return null;
+	}
+	
 	@SuppressWarnings("unchecked")
 	public List<Arbitre> findSelectedReferees(int isSelected) {
-		return em.createQuery("select a from arbitre a where a.isselected = :selected")
+		return em.createQuery("select a from Arbitre a where a.iselected = :selected")
 				.setParameter("selected", isSelected).getResultList();
 	}
 	
-	public void addReferee(Arbitre Referee) {
+	public boolean existName(String name) {
+		TypedQuery<Arbitre> query = em.createQuery("select a from Arbitre a where a.nom = :name", Arbitre.class);
+		List<Arbitre> Arbitres = query.setParameter("name", name).getResultList();
+		
+		return Arbitres.size() > 0;
+	}
+	
+	public void addReferee(Arbitre referee) {
 		em.getTransaction().begin();
-		em.persist(Referee);
+		em.persist(referee);
+		em.flush();
 		em.getTransaction().commit();
 	}
 	
 	public void updateReferee(Arbitre customReferee) {
-		em.getTransaction().begin();
-		em.merge(customReferee);
-		em.getTransaction().commit();
+		Arbitre referee = findReferee(customReferee.getIdArbitre());
+		if (referee != null) {
+			em.getTransaction().begin();
+			referee.replaceBy(customReferee);
+			em.getTransaction().commit();
+		}
 	}
 
 	public void deleteReferee(int id) {

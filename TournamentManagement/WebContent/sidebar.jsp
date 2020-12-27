@@ -36,78 +36,49 @@
 			<!-- sidebar-search  -->
 			<div class="sidebar-menu">
 				<ul>
-                <li class="header-menu">
-                  <span>General settings</span>
-                </li>
-                <li class="sidebar">
-                  <a href="${pageContext.request.contextPath}/home">
-                    <i class="fa fa-home"></i>
-                    <span>Home</span>
-                  </a>
-                </li>
-                <li class="sidebar-dropdown">
-                  <a href="#">
-                    <i class="fas fa-table-tennis"></i>
-                    <span>Tennis Player </span>
-                  </a>
-                  <div class="sidebar-submenu">
-                    <ul>
-                      <li>
-                        <a href="${pageContext.request.contextPath}/listPlayer">
-                        	List of players 
-                        </a>
-                      </li>
-                      <li>
-                        <a href="${pageContext.request.contextPath}/updatePlayer">Update a player</a>
-                      </li>
-                    </ul>
-                  </div>
-                </li>
-                <li class="sidebar-dropdown">
-                  <a href="#">
-                    <i class="fas fa-child"></i>
-                    <span>Referee</span>
-                  </a>
-                  <div class="sidebar-submenu">
-                    <ul>
-                      <li>
-                        <a href="listOfRef.html">list of referees</a>
-                      </li>
-                      <li>
-                        <a href="updReferee.html">Update a referee</a>
-                      </li>
-                    </ul>
-                  </div>
-                </li>
-                <li class="sidebar-dropdown">
-                  <a href="#">
-                    <i class="fas fa-trophy"></i>
-                    <span>Game Management</span>
-                  </a>
-                  <div class="sidebar-submenu">
-                    <ul>
-                      <li>
-                        <a href="createGame.html">Create a game</a>
-                      </li>
-                      <li>
-                        <a href="updGame.html">Update a game</a>
-                      </li>
-                    </ul>
-                  </div>
-                </li>
-                <li class="sidebar">
-                  <a href="userSettings.html">
-                    <i class="fas fa-user-cog"></i>
-                    <span>User Settings</span>
-                  </a>
-                </li>
-                <li class="sidebar">
-                  <a href="#">
-                    <i class="fas fa-info-circle"></i>
-                    <span>About the app</span>
-                  </a>
-                </li>
-              </ul>
+					<li class="header-menu"><span>General settings</span></li>
+					<li class="sidebar"><a
+						href="${pageContext.request.contextPath}/home"> <i
+							class="fa fa-home"></i> <span>Home</span>
+					</a></li>
+					<li class="sidebar-dropdown"><a href="#"> <i
+							class="fas fa-table-tennis"></i> <span>Tennis Player </span>
+					</a>
+						<div class="sidebar-submenu">
+							<ul>
+								<li><a href="${pageContext.request.contextPath}/listPlayer">
+										List of players </a></li>
+								<li><a
+									href="${pageContext.request.contextPath}/updatePlayer">Update
+										a player</a></li>
+							</ul>
+						</div></li>
+					<li class="sidebar-dropdown"><a href="#"> <i
+							class="fas fa-child"></i> <span>Referee</span>
+					</a>
+						<div class="sidebar-submenu">
+							<ul>
+								<li><a
+									href="${pageContext.request.contextPath}/listReferee">list
+										of referees</a></li>
+								<li><a
+									href="${pageContext.request.contextPath}/updateReferee">Update
+										a referee</a></li>
+							</ul>
+						</div></li>
+					<li class="sidebar-dropdown"><a href="#"> <i
+							class="fas fa-trophy"></i> <span>Game Management</span>
+					</a>
+						<div class="sidebar-submenu">
+							<ul>
+								<li><a href="createGame.html">Create a game</a></li>
+								<li><a href="updGame.html">Update a game</a></li>
+							</ul>
+						</div>
+					<li class="sidebar"><a href="#"> <i
+							class="fas fa-info-circle"></i> <span>About the app</span>
+					</a></li>
+				</ul>
 			</div>
 			<!-- sidebar-menu  -->
 		</div>

@@ -51,7 +51,6 @@ public class updatePlayer extends HttpServlet {
 		Joueur joueur = joueurDao.findPlayer(id);
 		
 		final Pattern pattern = Pattern.compile("^[A-Za-z, ]++$");
-		final Pattern pattern_textArea = Pattern.compile("^[a-zA-Z0-9\\.,\\s]+$");
 		
 		if (nom.isEmpty())
 			nom = joueur.getNom();
@@ -84,8 +83,8 @@ public class updatePlayer extends HttpServlet {
 		if (description.isEmpty())
 			description = joueur.getDescription();
 		else {
-			if (!pattern_textArea.matcher(description).matches())
-				error += "Veuillez entrer une description valide \n";
+			if (description.length() < 30)
+				error += "Veuillez entrer une description d'au minimum 30 charactères \n";
 		}
 		
 		if (error.isEmpty()) {

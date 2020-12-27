@@ -10,7 +10,7 @@ jQuery(function ($) {
       $(this).parent().addClass("active");
     }
   });
-    $("#btnToHide").on("click", function () {
-    	$("#rowToHide").toggle();
+  $("#btnToHide").on("click", function () {
+    $("#rowToHide").toggle();
   });
 });

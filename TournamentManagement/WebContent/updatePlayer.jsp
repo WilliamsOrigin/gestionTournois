@@ -61,7 +61,7 @@
 						</form>
 					</div>
 				</div>
-				<br /> <br /> <br />
+				<br /> <br />
 				<%
 					String error = (String) request.getAttribute("error");
 					Joueur j = (Joueur) request.getAttribute("player");
@@ -386,7 +386,8 @@
 								</div>
 								<div class="col-sm-6 pl-0">
 									<button type="submit" class="btn btn-mdb-color btn-block">
-										updload</button>
+										updload
+									</button>
 								</div>
 							</div>
 						</div>

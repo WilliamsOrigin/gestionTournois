@@ -13,7 +13,6 @@
 <link rel="stylesheet" href="assets/css/listOfPl.css" />
 </head>
 <body>
-
 	<div class="page-wrapper chiller-theme toggled">
 		<jsp:include page="sidebar.jsp" />
 		<!-- sidebar-wrapper  -->

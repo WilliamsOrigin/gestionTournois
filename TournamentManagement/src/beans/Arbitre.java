@@ -25,6 +25,19 @@ public class Arbitre  {
 
 	public Arbitre() {
 	}
+	
+	public Arbitre(String description, String nationalite, String nom) {
+		this.description = description;
+		this.nationalite = nationalite;
+		this.nom = nom;
+		this.isselected = 0;
+	}
+
+	public void replaceBy(Arbitre a) {
+		this.description = a.description;
+		this.nationalite = a.nationalite;
+		this.nom = a.nom;
+	}
 
 	public Integer getIdArbitre() {
 		return this.idArbitre;

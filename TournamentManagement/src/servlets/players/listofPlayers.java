@@ -48,7 +48,6 @@ public class listofPlayers extends HttpServlet {
 		String img = "profile.jpg";
 		
 		final Pattern pattern = Pattern.compile("^[A-Za-z, ]++$");
-		final Pattern pattern_textArea = Pattern.compile("^[a-zA-Z0-9\\.,\\s]+$");
 		
 		if(joueurDao.existName(nom)) {
 			error += "Un joueur de ce nom existe déjà!! \n";
@@ -60,8 +59,8 @@ public class listofPlayers extends HttpServlet {
 		if (joueurDao.existRanking(classementMd, sexe))
 			error += "Désolé Mais ce classement existe déjà pour ce sexe \n";
 		
-		if (!pattern_textArea.matcher(description).matches())
-			error += "Veuillez entrer une description valide \n";
+		if (description.length() < 30)
+			error += "Veuillez entrer une description d'au minimum 30 charactères \n";
 		
 		if (error.isEmpty()) {
 			Joueur player = new Joueur(classementMd, description, img, nationalite, nom, sexe);			
