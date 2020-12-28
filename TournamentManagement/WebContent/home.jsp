@@ -1,4 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
@@ -50,7 +52,7 @@
 									<div class="col-sm-8">
 										<img src="./assets/img/court.jpg" class="img-fluid rounded" />
 									</div>
-									<div class="col-sm-4 pt-4 text-justify">
+									<div class="col-sm-4 pt-1 pl-0 text-justify">
 										<p>
 											Statut:
 											<c:if test="${games.key.getStatut() == 0 }">
@@ -61,6 +63,10 @@
 											</c:if>
 										</p>
 										<p>Court n° ${games.key.getCourt()}</p>
+										<p>
+											Jour:
+											<fmt:formatDate type="date" value="${games.key.getJour()}" />
+										</p>
 										<p>
 											Début: <strong class="text-primary">${games.key.getHeuredb()}</strong>
 										</p>
@@ -109,7 +115,7 @@
 									<div class="col-8">
 										<img src="./assets/img/court2.jpg" class="img-fluid rounded" />
 									</div>
-									<div class="col-sm-4 pt-4 text-justify">
+									<div class="col-sm-4 pt-1 pl-0 text-justify">
 										<p>
 											Statut:
 											<c:if test="${games.key.getStatut() == 0 }">
@@ -120,6 +126,10 @@
 											</c:if>
 										</p>
 										<p>Court n° ${games.key.getCourt()}</p>
+										<p>
+											Jour:
+											<fmt:formatDate type="date" value="${games.key.getJour()}" />
+										</p>
 										<p>
 											Début: <strong class="text-primary">${games.key.getHeuredb()}</strong>
 										</p>

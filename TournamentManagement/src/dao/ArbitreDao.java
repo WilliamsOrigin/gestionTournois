@@ -37,9 +37,9 @@ public class ArbitreDao {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Arbitre> findSelectedReferees(int isSelected) {
-		return em.createQuery("select a from Arbitre a where a.iselected = :selected")
-				.setParameter("selected", isSelected).getResultList();
+	public List<Arbitre> findSelectedReferees() {
+		return em.createQuery("select a from Arbitre a where a.isselected = 0")
+				 .getResultList();
 	}
 	
 	public boolean existName(String name) {

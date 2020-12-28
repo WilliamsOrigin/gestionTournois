@@ -1,8 +1,6 @@
 package servlets.players;
 
 import java.io.IOException;
-import java.util.List;
-import java.util.regex.Pattern;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -26,9 +24,16 @@ public class deletePlayer extends HttpServlet {
 	
 	public void doPost(HttpServletRequest request, HttpServletResponse response) 
 	throws ServletException, IOException {
+		String error = "";
 		int id = Integer.parseInt(request.getParameter("idjoueur"));
+		Joueur joueur = joueurDao.findPlayer(id);
 		
-		joueurDao.deletePlayer(id);
+		if (joueur.getIsselected() == 1) {
+			error += "Vous ne pouvez supprimer un joueur qui est en cours de match";
+			request.setAttribute("error", error);
+		}
+		else
+			joueurDao.deletePlayer(id);
 		
 		this.getServletContext().getRequestDispatcher("/updatePlayer.jsp")
 			.forward(request, response);							

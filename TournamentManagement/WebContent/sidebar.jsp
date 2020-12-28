@@ -71,7 +71,7 @@
 					</a>
 						<div class="sidebar-submenu">
 							<ul>
-								<li><a href="createGame.html">Create a game</a></li>
+								<li><a href="${pageContext.request.contextPath}/createGameHome">Create a game</a></li>
 								<li><a href="updGame.html">Update a game</a></li>
 							</ul>
 						</div>

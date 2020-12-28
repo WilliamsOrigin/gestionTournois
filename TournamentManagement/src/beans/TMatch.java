@@ -1,6 +1,5 @@
 package beans;
 
-import java.io.Serializable;
 import javax.persistence.*;
 import java.sql.Time;
 import java.util.Date;
@@ -15,9 +14,8 @@ import java.util.List;
 @Table(name="t_match")
 @NamedQuery(name="TMatch.findAll", query="SELECT t FROM TMatch t")
 public class TMatch  {
-	private static final long serialVersionUID = 1L;
-
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_match")
 	private Integer idMatch;
 
@@ -43,8 +41,32 @@ public class TMatch  {
 	private List<Appartenir> appartenirs;
 
 	public TMatch() {
+		
+	}
+	
+	public TMatch(Integer categorie, Integer court, Time heuredb, Time heurefin, Date jour, String score, Integer sets,
+			Integer statut) {
+		this.categorie = categorie;
+		this.court = court;
+		this.heuredb = heuredb;
+		this.heurefin = heurefin;
+		this.jour = jour;
+		this.score = score;
+		this.sets = sets;
+		this.statut = statut;
 	}
 
+	public void replaceBy(TMatch m) {
+		this.categorie = m.categorie;
+		this.court = m.court;
+		this.heuredb = m.heuredb;
+		this.heurefin = m.heurefin;
+		this.jour = m.jour;
+		this.score = m.score;
+		this.sets = m.sets;
+		this.statut = m.statut;
+	}
+	
 	public Integer getIdMatch() {
 		return this.idMatch;
 	}

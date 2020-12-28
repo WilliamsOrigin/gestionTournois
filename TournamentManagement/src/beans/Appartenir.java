@@ -11,6 +11,7 @@ import javax.persistence.*;
 @NamedQuery(name="Appartenir.findAll", query="SELECT a FROM Appartenir a")
 public class Appartenir  {
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_app")
 	private Integer idApp;
 
@@ -29,7 +30,21 @@ public class Appartenir  {
 
 	public Appartenir() {
 	}
+	
+	public Appartenir(Integer categorie, Integer idEquipe, Integer idJoueur, beans.TMatch tMatch) {
+		this.categorie = categorie;
+		this.idEquipe = idEquipe;
+		this.idJoueur = idJoueur;
+		TMatch = tMatch;
+	}
 
+	public void replaceBy(Appartenir ap) {
+		this.categorie = ap.categorie;
+		this.idEquipe = ap.idEquipe;
+		this.idJoueur = ap.idJoueur;
+		TMatch = ap.getTMatch();
+	}
+	
 	public Integer getIdApp() {
 		return this.idApp;
 	}

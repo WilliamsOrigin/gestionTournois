@@ -39,12 +39,14 @@ public class AppartenirDao {
 	public void add(Appartenir App) {
 		em.getTransaction().begin();
 		em.persist(App);
+		em.flush();
 		em.getTransaction().commit();
 	}
 	
 	public void update(Appartenir customApp) {
+		Appartenir ap = findApp(customApp.getIdApp());
 		em.getTransaction().begin();
-		em.merge(customApp);
+		ap.replaceBy(customApp);
 		em.getTransaction().commit();
 	}
 	

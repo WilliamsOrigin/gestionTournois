@@ -92,4 +92,28 @@
 		<servlet-name>deleteReferee</servlet-name>
 		<url-pattern>/deleteReferee</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>createSimpleGame</servlet-name>
+		<servlet-class>servlets.game.createSimpleGame</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>createSimpleGame</servlet-name>
+		<url-pattern>/createSimpleGame</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>createDoubleGame</servlet-name>
+		<servlet-class>servlets.game.createDoubleGame</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>createDoubleGame</servlet-name>
+		<url-pattern>/createDoubleGame</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>createGameHome</servlet-name>
+		<servlet-class>servlets.game.createGameHome</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>createGameHome</servlet-name>
+		<url-pattern>/createGameHome</url-pattern>
+	</servlet-mapping>
 </web-app>

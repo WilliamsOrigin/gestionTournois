@@ -18,23 +18,30 @@ public class MatchDao {
 
 	@SuppressWarnings("unchecked")
 	public List<TMatch> findAllGames() {
-		return em.createQuery("select m from t_match m").getResultList();
+		return em.createQuery("select m from TMatch m").getResultList();
 	}
 	
 	@SuppressWarnings("unchecked")
 	public List<TMatch> findAllGamesByCategory(int categorie) {
-		return em.createQuery("select m from t_match m where m.categorie = :cat")
+		return em.createQuery("select m from TMatch m where m.categorie = :cat")
 				.setParameter("cat", categorie).getResultList();
 	}
 	
 	@SuppressWarnings("unchecked")
 	public List<TMatch> findAllGamesByStatus(int statut) {
-		return em.createQuery("select m from t_match m where m.statut = :status")
+		return em.createQuery("select m from TMatch m where m.statut = :status")
 				.setParameter("status", statut).getResultList();
+	}
+	
+	public boolean isCourtNotDisponible(int court) {
+		TypedQuery<TMatch> query = em.createQuery("select m from TMatch m where m.statut = 0 and m.court = :court", TMatch.class);
+		List<TMatch> matchs = query.setParameter("court", court).getResultList();
+
+		return matchs.size() > 0;
 	}
 
 	public TMatch findGame(int court) {
-		TypedQuery<TMatch> query = em.createQuery("select m from t_match m where m.court = :court", TMatch.class);
+		TypedQuery<TMatch> query = em.createQuery("select m from TMatch m where m.court = :court", TMatch.class);
 		return query.setParameter("court", court).getSingleResult();
 	}
 	
@@ -44,17 +51,15 @@ public class MatchDao {
 	
 	public void addGame(TMatch game) {
 		em.getTransaction().begin();
-		if (game.getCategorie() <= 2) 
-			game.setSets(3);
-		else
-			game.setSets(5);
 		em.persist(game);
+		em.flush();
 		em.getTransaction().commit();
 	}
 	
 	public void updateGame(TMatch updatedGame) {
+		TMatch m = findGameById(updatedGame.getIdMatch());
 		em.getTransaction().begin();
-		em.merge(updatedGame);
+		m.replaceBy(updatedGame);
 		em.getTransaction().commit();
 	}
 	

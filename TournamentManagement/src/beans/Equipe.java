@@ -1,6 +1,5 @@
 package beans;
 
-import java.io.Serializable;
 import javax.persistence.*;
 
 
@@ -11,9 +10,8 @@ import javax.persistence.*;
 @Entity
 @NamedQuery(name="Equipe.findAll", query="SELECT e FROM Equipe e")
 public class Equipe  {
-	private static final long serialVersionUID = 1L;
-
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_equipe")
 	private Integer idEquipe;
 
@@ -24,6 +22,16 @@ public class Equipe  {
 	private Integer idJoueur;
 
 	public Equipe() {
+	}
+
+	public Equipe(Integer idEquipier, Integer idJoueur) {
+		this.idEquipier = idEquipier;
+		this.idJoueur = idJoueur;
+	}
+	
+	public void replaceBy(Equipe e) {
+		this.idEquipier = e.idEquipier;
+		this.idJoueur = e.idJoueur;
 	}
 
 	public Integer getIdEquipe() {
