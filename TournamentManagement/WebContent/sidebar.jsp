@@ -14,7 +14,7 @@
 						src="./assets/img/profile.jpg" alt="User picture" />
 				</div>
 				<div class="user-info">
-					<span class="user-name">Bertrand </span> <span class="user-role">Administrator</span>
+					<span class="user-name">Username </span> <span class="user-role">Role</span>
 					<span class="user-status"> <i class="fa fa-circle"></i> <span>Online</span>
 					</span>
 				</div>
@@ -72,7 +72,7 @@
 						<div class="sidebar-submenu">
 							<ul>
 								<li><a href="${pageContext.request.contextPath}/createGameHome">Create a game</a></li>
-								<li><a href="updGame.html">Update a game</a></li>
+								<li><a href="${pageContext.request.contextPath}/updateGame">Update a game</a></li>
 							</ul>
 						</div>
 					<li class="sidebar"><a href="#"> <i
@@ -86,7 +86,7 @@
 		<div class="sidebar-footer">
 			<a href="#"> <i class="fa fa-bell"></i>
 			</a> <a href="#"> <i class="fa fa-cog"></i>
-			</a> <a href="#"> <i class="fa fa-power-off"></i>
+			</a> <a href="${pageContext.request.contextPath}/logout"> <i class="fa fa-power-off"></i>
 			</a>
 		</div>
 	</div>

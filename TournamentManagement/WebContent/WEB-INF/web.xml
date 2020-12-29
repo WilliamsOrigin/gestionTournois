@@ -9,6 +9,14 @@
 		<url-pattern>/login</url-pattern>
 	</servlet-mapping>
 	<servlet>
+		<servlet-name>logout</servlet-name>
+		<servlet-class>servlets.logout</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>logout</servlet-name>
+		<url-pattern>/logout</url-pattern>
+	</servlet-mapping>
+	<servlet>
 		<servlet-name>home</servlet-name>
 		<servlet-class>servlets.home</servlet-class>
 	</servlet>
@@ -115,5 +123,29 @@
 	<servlet-mapping>
 		<servlet-name>createGameHome</servlet-name>
 		<url-pattern>/createGameHome</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>updateGame</servlet-name>
+		<servlet-class>servlets.game.updateGame</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>updateGame</servlet-name>
+		<url-pattern>/updateGame</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>findGame</servlet-name>
+		<servlet-class>servlets.game.findGame</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>findGame</servlet-name>
+		<url-pattern>/findGame</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>deleteGame</servlet-name>
+		<servlet-class>servlets.game.deleteGame</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>deleteGame</servlet-name>
+		<url-pattern>/deleteGame</url-pattern>
 	</servlet-mapping>
 </web-app>

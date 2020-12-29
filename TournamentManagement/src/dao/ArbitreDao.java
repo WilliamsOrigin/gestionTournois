@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
 import beans.Arbitre;
+import beans.TMatch;
 
 
 public class ArbitreDao {
@@ -47,6 +48,15 @@ public class ArbitreDao {
 		List<Arbitre> Arbitres = query.setParameter("name", name).getResultList();
 		
 		return Arbitres.size() > 0;
+	}
+	
+	public boolean isDeletable(int id) {
+		TypedQuery<TMatch> query = em.createQuery("select m from TMatch m, Arbitre a WHERE a.idArbitre = m.arbitre.idArbitre AND a.idArbitre = :id", TMatch.class);
+		List<TMatch> matchs = query.setParameter("id", id).getResultList();
+		
+		if (matchs.size() > 0)
+			return false;
+		return true;
 	}
 	
 	public void addReferee(Arbitre referee) {

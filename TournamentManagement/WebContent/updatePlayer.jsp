@@ -51,7 +51,7 @@
 							<div class="input-group">
 								<input class="form-control my-0 py-1 border-dark" type="text"
 									name="search"
-									placeholder="Player full name to fill the edit form" />
+									placeholder="Player full name to fill the edit form" required />
 								<div class="input-group-append">
 									<button class="btn btn-mdb-color mt-0 ml-0" id="basic-text1">
 										<i class="fas fa-search text-grey" aria-hidden="true"></i>

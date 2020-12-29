@@ -44,7 +44,7 @@ public class Appartenir  {
 		this.idJoueur = ap.idJoueur;
 		TMatch = ap.getTMatch();
 	}
-	
+
 	public Integer getIdApp() {
 		return this.idApp;
 	}

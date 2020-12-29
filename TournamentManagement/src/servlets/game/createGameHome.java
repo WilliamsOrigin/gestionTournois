@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import beans.Arbitre;
 import beans.Joueur;
+import beans.Utilisateur;
 import dao.ArbitreDao;
 import dao.JoueurDao;
 
@@ -31,13 +32,22 @@ public class createGameHome extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		
-		List<Joueur> players = joueurDao.findSelectedPlayers();
-		List<Arbitre> referees = arbitreDao.findSelectedReferees();
+		Utilisateur user = (Utilisateur) request.getSession().getAttribute("user");
 		
-		request.setAttribute("players", players);
-		request.setAttribute("referees", referees);
-		
-		this.getServletContext().getRequestDispatcher("/createGame.jsp")
-		.forward(request, response);							
+		if (user != null) {
+			if (user.getRole() == 0) {
+				List<Joueur> players = joueurDao.findSelectedPlayers();
+				List<Arbitre> referees = arbitreDao.findSelectedReferees();
+				
+				request.setAttribute("players", players);
+				request.setAttribute("referees", referees);
+				
+				this.getServletContext().getRequestDispatcher("/createGame.jsp")
+				.forward(request, response);
+			}
+			response.sendRedirect("http://localhost:8080/TournamentManagement/home");
+		}
+		else
+			response.sendRedirect("http://localhost:8080/TournamentManagement/loginPage.jsp");
 	}
 }

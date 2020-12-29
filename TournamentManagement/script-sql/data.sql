@@ -62,12 +62,12 @@ INSERT INTO arbitre(id_arbitre, nom, nationalite, isSelected, description) VALUE
 
 ALTER TABLE arbitre ALTER COLUMN id_arbitre RESTART WITH 12;
 
-INSERT INTO t_match(id_match, jour, heureDb, heureFin, court, score, statut, sets, categorie) VALUES
-(1, {d'2020-12-23'}, {t '12:20'}, {t '14:20'}, 1, '2 - 1', 1, 3, 1),
-(2, {d'2020-12-23'}, {t '10:00'}, {t '12:00'}, 4, '2 - 3', 1, 3, 2),
-(3, {d'2020-12-23'}, {t '14:30'}, {t '16:20'}, 5, '3 - 1', 1, 5, 3),
-(4, {d'2020-12-23'}, {t '16:00'}, {t '18:00'}, 7, '5 - 4', 1, 5, 4),
-(5, {d'2020-12-23'}, {t '12:20'}, {t '14:20'}, 9, '5 - 4', 1, 5, 5);
+INSERT INTO t_match(id_match, jour, heureDb, heureFin, court, score, statut, sets, categorie, id_arbitre) VALUES
+(1, {d'2020-12-23'}, {t '12:20'}, {t '14:20'}, 1, '2 - 1', 1, 3, 1, 1),
+(2, {d'2020-12-23'}, {t '10:00'}, {t '12:00'}, 4, '2 - 3', 1, 3, 2, 3),
+(3, {d'2020-12-23'}, {t '14:30'}, {t '16:20'}, 5, '3 - 1', 1, 5, 3, 4),
+(4, {d'2020-12-23'}, {t '16:00'}, {t '18:00'}, 7, '5 - 4', 1, 5, 4, 2),
+(5, {d'2020-12-23'}, {t '12:20'}, {t '14:20'}, 9, '5 - 4', 1, 5, 5, 6);
 
 ALTER TABLE t_match ALTER COLUMN id_match RESTART WITH 6;
 

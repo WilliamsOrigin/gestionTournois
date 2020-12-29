@@ -28,9 +28,11 @@ public class MatchDao {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<TMatch> findAllGamesByStatus(int statut) {
-		return em.createQuery("select m from TMatch m where m.statut = :status")
-				.setParameter("status", statut).getResultList();
+	public boolean isNotFinishGame(int idMatch) {
+		List<TMatch> games = em.createQuery("select m from TMatch m where m.idMatch = :id and m.statut = 1")
+				.setParameter("id", idMatch).getResultList();
+		
+		return games.size() > 0;
 	}
 	
 	public boolean isCourtNotDisponible(int court) {
@@ -42,7 +44,12 @@ public class MatchDao {
 
 	public TMatch findGame(int court) {
 		TypedQuery<TMatch> query = em.createQuery("select m from TMatch m where m.court = :court", TMatch.class);
-		return query.setParameter("court", court).getSingleResult();
+		List<TMatch> games = query.setParameter("court", court).getResultList();
+		
+		if (games.size() > 0)
+			return games.get(0);
+		
+		return null;
 	}
 	
 	public TMatch findGameById(int id) {

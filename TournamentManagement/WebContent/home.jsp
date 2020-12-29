@@ -51,6 +51,9 @@
 								<div class="row">
 									<div class="col-sm-8">
 										<img src="./assets/img/court.jpg" class="img-fluid rounded" />
+										<p class="text-center pt-3 mb-0">
+											Arbitre: <strong>${games.key.getArbitre().getNom()}</strong>
+										</p>
 									</div>
 									<div class="col-sm-4 pt-1 pl-0 text-justify">
 										<p>
@@ -114,6 +117,9 @@
 								<div class="row">
 									<div class="col-8">
 										<img src="./assets/img/court2.jpg" class="img-fluid rounded" />
+										<p class="text-center pt-3 mb-0">
+											Arbitre: <strong>${games.key.getArbitre().getNom()}</strong>
+										</p>
 									</div>
 									<div class="col-sm-4 pt-1 pl-0 text-justify">
 										<p>

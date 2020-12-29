@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import beans.Joueur;
+import beans.Utilisateur;
 import dao.JoueurDao;
 
 public class deletePlayer extends HttpServlet {
@@ -24,18 +25,27 @@ public class deletePlayer extends HttpServlet {
 	
 	public void doPost(HttpServletRequest request, HttpServletResponse response) 
 	throws ServletException, IOException {
-		String error = "";
-		int id = Integer.parseInt(request.getParameter("idjoueur"));
-		Joueur joueur = joueurDao.findPlayer(id);
-		
-		if (joueur.getIsselected() == 1) {
-			error += "Vous ne pouvez supprimer un joueur qui est en cours de match";
-			request.setAttribute("error", error);
+		Utilisateur user = (Utilisateur) request.getSession().getAttribute("user");
+
+		if (user != null) {
+			if (user.getRole() == 0) {
+				String error = "";
+				int id = Integer.parseInt(request.getParameter("idjoueur"));
+				Joueur joueur = joueurDao.findPlayer(id);
+				
+				if (joueur.getIsselected() == 1) {
+					error += "Vous ne pouvez supprimer un joueur qui est en cours de match";
+					request.setAttribute("error", error);
+				}
+				else
+					joueurDao.deletePlayer(id);
+				
+				this.getServletContext().getRequestDispatcher("/updatePlayer.jsp")
+					.forward(request, response);							
+			}
+			response.sendRedirect("http://localhost:8080/TournamentManagement/home");
 		}
 		else
-			joueurDao.deletePlayer(id);
-		
-		this.getServletContext().getRequestDispatcher("/updatePlayer.jsp")
-			.forward(request, response);							
+			response.sendRedirect("http://localhost:8080/TournamentManagement/loginPage.jsp");							
 	}
 }

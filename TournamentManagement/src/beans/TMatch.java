@@ -40,12 +40,16 @@ public class TMatch  {
 	@OneToMany(mappedBy="TMatch")
 	private List<Appartenir> appartenirs;
 
+	//bi-directional many-to-one association to Arbitre
+	@ManyToOne
+	@JoinColumn(name="id_arbitre")
+	private Arbitre arbitre;
+
 	public TMatch() {
-		
 	}
 	
 	public TMatch(Integer categorie, Integer court, Time heuredb, Time heurefin, Date jour, String score, Integer sets,
-			Integer statut) {
+			Integer statut, Arbitre arbitre) {
 		this.categorie = categorie;
 		this.court = court;
 		this.heuredb = heuredb;
@@ -54,6 +58,7 @@ public class TMatch  {
 		this.score = score;
 		this.sets = sets;
 		this.statut = statut;
+		this.arbitre = arbitre;
 	}
 
 	public void replaceBy(TMatch m) {
@@ -65,8 +70,9 @@ public class TMatch  {
 		this.score = m.score;
 		this.sets = m.sets;
 		this.statut = m.statut;
+		this.arbitre = m.arbitre;
 	}
-	
+
 	public Integer getIdMatch() {
 		return this.idMatch;
 	}
@@ -159,6 +165,37 @@ public class TMatch  {
 		appartenir.setTMatch(null);
 
 		return appartenir;
+	}
+
+	public Arbitre getArbitre() {
+		return this.arbitre;
+	}
+
+	public void setArbitre(Arbitre arbitre) {
+		this.arbitre = arbitre;
+	}
+	
+	public String getCustomCategory() {
+		switch(categorie) {
+		case 1: 
+			return "Simple Messieurs";
+		case 2:
+			return "Simple Dames";
+		case 3:
+			return "Double Messieurs";
+		case 4: 
+			return "Double Dames";
+		case 5:
+			return "Double mixte";
+		default:
+			return "";
+		}
+	}
+	
+	public String getCustomStatut() {
+		if (statut == 0)
+			return "En cours";
+		return "Terminé";
 	}
 
 }

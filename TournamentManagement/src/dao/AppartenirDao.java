@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 
 import beans.Appartenir;
 import beans.Equipe;
@@ -27,13 +28,32 @@ public class AppartenirDao {
 		equipeDao = new EquipeDao(em);
 	}
 	
-	@SuppressWarnings("unchecked")
 	public List<Appartenir> findAllApps() {
-		return em.createQuery("select a from Appartenir a").getResultList();
+		return em.createQuery("select a from Appartenir a", Appartenir.class).getResultList();
 	}
 	
 	public Appartenir findApp(int id) {
 		return em.find(Appartenir.class, id);
+	}
+	
+	public Appartenir findBySimpleGame(int idG, int idJ) {
+		TypedQuery<Appartenir> query = em.createQuery("select a from Appartenir a where a.TMatch.idMatch = :idm and a.idJoueur = :idj", Appartenir.class);
+		List<Appartenir> aps = query.setParameter("idm", idG).setParameter("idj", idJ).getResultList();
+		
+		if (aps.size() > 0)
+			return aps.get(0);
+		
+		return null;
+	}
+	
+	public Appartenir findByDoubleGame(int idG, int idE) {
+		TypedQuery<Appartenir> query = em.createQuery("select a from Appartenir a where a.TMatch.idMatch = :idm and a.idEquipe = :ide", Appartenir.class);
+		List<Appartenir> aps = query.setParameter("idm", idG).setParameter("ide", idE).getResultList();
+		
+		if (aps.size() > 0)
+			return aps.get(0);
+		
+		return null;
 	}
 	
 	public void add(Appartenir App) {
@@ -44,7 +64,12 @@ public class AppartenirDao {
 	}
 	
 	public void update(Appartenir customApp) {
-		Appartenir ap = findApp(customApp.getIdApp());
+		Appartenir ap;
+		if (customApp.getIdEquipe() == null) {
+			ap = findBySimpleGame(customApp.getTMatch().getIdMatch(), customApp.getIdJoueur());			
+		}
+		else
+			ap = findBySimpleGame(customApp.getTMatch().getIdMatch(), customApp.getIdEquipe());
 		em.getTransaction().begin();
 		ap.replaceBy(customApp);
 		em.getTransaction().commit();
@@ -59,9 +84,8 @@ public class AppartenirDao {
 		}
 	}
 	
-	@SuppressWarnings("unchecked")
 	public List<Joueur> getPlayersAndOponents(int match) {
-		List<Appartenir> apps = em.createQuery("select a from Appartenir a where a.TMatch.idMatch = :idm")
+		List<Appartenir> apps = em.createQuery("select a from Appartenir a where a.TMatch.idMatch = :idm", Appartenir.class)
 				.setParameter("idm", match).getResultList();
 		
 		List<Joueur> players = new ArrayList<Joueur>();
@@ -75,9 +99,8 @@ public class AppartenirDao {
 		return players;
 	}
 	
-	@SuppressWarnings("unchecked")
 	public List<Joueur> getTeamsAndOponents(int match) {
-		List<Appartenir> apps = em.createQuery("select a from Appartenir a where a.TMatch.idMatch = :idm")
+		List<Appartenir> apps = em.createQuery("select a from Appartenir a where a.TMatch.idMatch = :idm", Appartenir.class)
 				.setParameter("idm", match).getResultList();
 		
 		List<Equipe> teams = new ArrayList<Equipe>();
@@ -97,10 +120,9 @@ public class AppartenirDao {
 		return players;
 	}
 	
-	@SuppressWarnings("unchecked")
 	public Map<TMatch, List<Joueur>> getInfoSimpleGame() {
 		List<TMatch> games = em.createQuery("select m from TMatch m, Appartenir a"
-				+ " where a.TMatch.idMatch = m.idMatch AND a.categorie <= 2")
+				+ " where a.TMatch.idMatch = m.idMatch AND a.categorie <= 2", TMatch.class)
 				.getResultList();
 		Map<TMatch, List<Joueur>> hm = new HashMap<TMatch, List<Joueur>>();
 		
@@ -115,10 +137,20 @@ public class AppartenirDao {
 		return hm;
 	}
 	
-	@SuppressWarnings("unchecked")
+	public List<Joueur> getPlayersForSimpleGame(int idG) {
+		List<Joueur> players = null;
+		Map<TMatch, List<Joueur>> gamePlayers = getInfoSimpleGame();
+		for (Map.Entry<TMatch, List<Joueur>> entry: gamePlayers.entrySet()) {
+			if (entry.getKey().getIdMatch() == idG) {
+				players = entry.getValue();
+			}
+		}
+		return players;
+	}
+	
 	public Map<TMatch, List<Joueur>> getInfoDoubleGame() {
 		List<TMatch> games = em.createQuery("select m from TMatch m, Appartenir a"
-				+ " where a.TMatch.idMatch = m.idMatch AND a.categorie > 2")
+				+ " where a.TMatch.idMatch = m.idMatch AND a.categorie > 2", TMatch.class)
 				.getResultList();
 		Map<TMatch, List<Joueur>> hm = new HashMap<TMatch, List<Joueur>>();
 		if (games.size() > 0) {
@@ -129,6 +161,24 @@ public class AppartenirDao {
 			}
 		}
 		return hm;
+	}
+	
+	public List<Joueur> getPlayersForDoubleGame(int idG) {
+		List<Joueur> players = null;
+		Map<TMatch, List<Joueur>> gamePlayers = getInfoDoubleGame();
+		for (Map.Entry<TMatch, List<Joueur>> entry: gamePlayers.entrySet()) {
+			if (entry.getKey().getIdMatch() == idG) {
+				players = entry.getValue();
+			}
+		}
+		return players;
+	}
+	
+	public List<Appartenir> getAllGameAp(int idM) {
+		List<Appartenir> appartenirs = em.createQuery("select a from Appartenir a, TMatch m"
+				+ " where a.TMatch.idMatch = m.idMatch AND m.idMatch = :idm", Appartenir.class)
+				.setParameter("idm", idM).getResultList();
+		return appartenirs;
 	}
 	
 }

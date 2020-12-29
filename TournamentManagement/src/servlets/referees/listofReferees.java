@@ -13,60 +13,80 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import beans.Arbitre;
+import beans.Utilisateur;
 import dao.ArbitreDao;
 
 public class listofReferees extends HttpServlet {
-	
+
 	private static final long serialVersionUID = 1L;
-	
+
 	EntityManagerFactory emf = Persistence.createEntityManagerFactory("TournamentManagement");
 	EntityManager em = emf.createEntityManager();
-	
+
 	private ArbitreDao ArbitreDao = new ArbitreDao(em);
-	
+
 	String error;
-	
+
 	public void doGet(HttpServletRequest request, HttpServletResponse response) 
-	throws ServletException, IOException {
-		
-		List<Arbitre> referees = ArbitreDao.findAllReferees();
-		
-		request.setAttribute("referees", referees);
-		
-		this.getServletContext().getRequestDispatcher("/listofReferees.jsp")
-			.forward(request, response);							
+			throws ServletException, IOException {
+
+		Utilisateur user = (Utilisateur) request.getSession().getAttribute("user");
+
+		if (user != null) {
+			if (user.getRole() == 0) {
+				List<Arbitre> referees = ArbitreDao.findAllReferees();
+
+				request.setAttribute("referees", referees);
+
+				this.getServletContext().getRequestDispatcher("/listofReferees.jsp")
+				.forward(request, response);							
+			}
+			response.sendRedirect("http://localhost:8080/TournamentManagement/home");
+		}
+		else
+			response.sendRedirect("http://localhost:8080/TournamentManagement/loginPage.jsp");												
 	}
-	
+
 	public void doPost(HttpServletRequest request, HttpServletResponse response) 
-	throws ServletException, IOException {
-		error = "";
-		String nom = request.getParameter("nom").trim();
-		String nationalite = request.getParameter("nationalite").trim();
-		String description = request.getParameter("description").trim();
-		
-		final Pattern pattern = Pattern.compile("^[A-Za-z, ]++$");
-		
-		if(ArbitreDao.existName(nom)) {
-			error += "Un Arbitre de ce nom existe déjà!! \n";
+			throws ServletException, IOException {
+
+		Utilisateur user = (Utilisateur) request.getSession().getAttribute("user");
+
+		if (user != null) {
+			if (user.getRole() == 0) {
+				error = "";
+				String nom = request.getParameter("nom").trim();
+				String nationalite = request.getParameter("nationalite").trim();
+				String description = request.getParameter("description").trim();
+
+				final Pattern pattern = Pattern.compile("^[A-Za-z, ]++$");
+
+				if(ArbitreDao.existName(nom)) {
+					error += "Un Arbitre de ce nom existe déjà!! \n";
+				}
+				else if (nom.isEmpty() || !pattern.matcher(nom).matches()) {
+					error += "Veuillez entrer un nom valide \n";
+				}
+
+				if (description.length() < 30)
+					error += "Veuillez entrer une description d'au minimum 30 charactères \n";
+
+				if (error.isEmpty()) {
+					Arbitre referee = new Arbitre(description, nationalite, nom);			
+					ArbitreDao.addReferee(referee);
+				}
+				else 
+					request.setAttribute("error", error);
+
+				List<Arbitre> referees = ArbitreDao.findAllReferees();
+				request.setAttribute("referees", referees);
+
+				this.getServletContext().getRequestDispatcher("/listofReferees.jsp")
+				.forward(request, response);									
+			}
+			response.sendRedirect("http://localhost:8080/TournamentManagement/home");
 		}
-		else if (nom.isEmpty() || !pattern.matcher(nom).matches()) {
-			error += "Veuillez entrer un nom valide \n";
-		}
-		
-		if (description.length() < 30)
-			error += "Veuillez entrer une description d'au minimum 30 charactères \n";
-		
-		if (error.isEmpty()) {
-			Arbitre referee = new Arbitre(description, nationalite, nom);			
-			ArbitreDao.addReferee(referee);
-		}
-		else 
-			request.setAttribute("error", error);
-		
-		List<Arbitre> referees = ArbitreDao.findAllReferees();
-		request.setAttribute("referees", referees);
-		
-		this.getServletContext().getRequestDispatcher("/listofReferees.jsp")
-			.forward(request, response);							
+		else
+			response.sendRedirect("http://localhost:8080/TournamentManagement/loginPage.jsp");						
 	}
 }

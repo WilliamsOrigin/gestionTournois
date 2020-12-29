@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import beans.Arbitre;
+import beans.Utilisateur;
 import dao.ArbitreDao;
 
 public class deleteReferee extends HttpServlet {
@@ -25,18 +26,36 @@ public class deleteReferee extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 
-		int id = Integer.parseInt(request.getParameter("idArbitre"));
-		String error = "";
-		Arbitre arbitre = arbitreDao.findReferee(id);
+		Utilisateur user = (Utilisateur) request.getSession().getAttribute("user");
 
-		if (arbitre.getIsselected() == 1) {
-			error += "Vous ne pouvez supprimer un arbitre qui est en cours de match";
-			request.setAttribute("error", error);
+		if (user != null) {
+			if (user.getRole() == 0) {
+
+				int id = Integer.parseInt(request.getParameter("idArbitre"));
+				String error = "";
+				Arbitre arbitre = arbitreDao.findReferee(id);
+
+				if (arbitre.getIsselected() == 1) {
+					error += "Vous ne pouvez supprimer un arbitre qui est en cours de match";
+				}
+				else {
+					if (arbitreDao.isDeletable(id)) {
+						arbitreDao.deleteReferee(id);
+					}
+					else 
+						error += "Désolé mais vous ne pouvez pas supprimer cet arbitre ! \n";
+				}
+
+				if (!error.isEmpty())
+					request.setAttribute("error", error);
+
+				this.getServletContext().getRequestDispatcher("/updateReferee.jsp")
+				.forward(request, response);						
+			}
+			response.sendRedirect("http://localhost:8080/TournamentManagement/home");
 		}
 		else
-			arbitreDao.deleteReferee(id);
+			response.sendRedirect("http://localhost:8080/TournamentManagement/loginPage.jsp");							
 
-		this.getServletContext().getRequestDispatcher("/updateReferee.jsp")
-		.forward(request, response);							
 	}
 }

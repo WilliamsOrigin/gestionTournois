@@ -29,12 +29,12 @@ public class login extends HttpServlet {
 	private UtilisateurDao userDao = new UtilisateurDao(em); 
 	private AppartenirDao appDao = new AppartenirDao(em);
 	
-	Utilisateur user;
-	
 	String error;
 	
 	public void doPost(HttpServletRequest request, HttpServletResponse response) 
 	throws ServletException, IOException {
+		
+		Utilisateur user = null;
 		
 		String pseudo = request.getParameter("pseudo");
 		String motdepasse = request.getParameter("motdepasse");

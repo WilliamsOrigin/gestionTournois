@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import beans.Joueur;
 import beans.TMatch;
+import beans.Utilisateur;
 import dao.AppartenirDao;
 
 public class home extends HttpServlet {
@@ -27,14 +28,21 @@ public class home extends HttpServlet {
 	
 	public void doGet(HttpServletRequest request, HttpServletResponse response) 
 	throws ServletException, IOException {
-		Map<TMatch, List<Joueur>> infoSimpleGame = appDao.getInfoSimpleGame();
-		Map<TMatch, List<Joueur>> infoDoubleGame = appDao.getInfoDoubleGame();
 		
-		request.setAttribute("infoSimpleGame", infoSimpleGame);
-		request.setAttribute("infoDoubleGame", infoDoubleGame);
+		Utilisateur user = (Utilisateur) request.getSession().getAttribute("user");
 		
-		this.getServletContext().getRequestDispatcher("/home.jsp")
-			.forward(request, response);		
+		if (user != null) {
+			Map<TMatch, List<Joueur>> infoSimpleGame = appDao.getInfoSimpleGame();
+			Map<TMatch, List<Joueur>> infoDoubleGame = appDao.getInfoDoubleGame();
+			
+			request.setAttribute("infoSimpleGame", infoSimpleGame);
+			request.setAttribute("infoDoubleGame", infoDoubleGame);
+			
+			this.getServletContext().getRequestDispatcher("/home.jsp")
+				.forward(request, response);
+		}
+		else
+			response.sendRedirect("http://localhost:8080/TournamentManagement/loginPage.jsp");
 				
 	}
 }

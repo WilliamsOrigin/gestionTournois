@@ -1,6 +1,7 @@
 package beans;
 
 import javax.persistence.*;
+import java.util.List;
 
 
 /**
@@ -23,7 +24,12 @@ public class Arbitre  {
 
 	private String nom;
 
+	//bi-directional many-to-one association to TMatch
+	@OneToMany(mappedBy="arbitre")
+	private List<TMatch> TMatches;
+
 	public Arbitre() {
+		
 	}
 	
 	public Arbitre(String description, String nationalite, String nom) {
@@ -32,12 +38,15 @@ public class Arbitre  {
 		this.nom = nom;
 		this.isselected = 0;
 	}
-
+	
 	public void replaceBy(Arbitre a) {
 		this.description = a.description;
 		this.nationalite = a.nationalite;
 		this.nom = a.nom;
+		this.isselected = a.isselected;
 	}
+
+
 
 	public Integer getIdArbitre() {
 		return this.idArbitre;
@@ -77,6 +86,28 @@ public class Arbitre  {
 
 	public void setNom(String nom) {
 		this.nom = nom;
+	}
+
+	public List<TMatch> getTMatches() {
+		return this.TMatches;
+	}
+
+	public void setTMatches(List<TMatch> TMatches) {
+		this.TMatches = TMatches;
+	}
+
+	public TMatch addTMatch(TMatch TMatch) {
+		getTMatches().add(TMatch);
+		TMatch.setArbitre(this);
+
+		return TMatch;
+	}
+
+	public TMatch removeTMatch(TMatch TMatch) {
+		getTMatches().remove(TMatch);
+		TMatch.setArbitre(null);
+
+		return TMatch;
 	}
 
 }
